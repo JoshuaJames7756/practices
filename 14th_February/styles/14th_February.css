@@ -2,3 +2,20 @@
 padding: 0;
 box-sizing: border-box;}
 
+header {
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    max-width: 1200px;
+    background-color: rgb(170, 48, 48);
+    padding: 1rem;
+}
+
+#logo {
+    font-size: 1.5rem;
+    font-family: Acme, Arial, sans-serif;
+}
+
+.legend h1 {align-items: center;}
