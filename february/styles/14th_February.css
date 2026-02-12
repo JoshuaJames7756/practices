@@ -252,3 +252,23 @@ background:var(--primary);
 margin:0 auto 10px;
 display:block;
 }
+
+/* BOTON LINK */
+
+.btn{
+display:inline-block;
+margin-top:1rem;
+padding:.9rem 1.8rem;
+border-radius:40px;
+background:var(--primary);
+color:white;
+text-decoration:none;
+font-size:1rem;
+transition:.3s;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.btn:hover{
+background:var(--primary-dark);
+transform:scale(1.05);
+}
