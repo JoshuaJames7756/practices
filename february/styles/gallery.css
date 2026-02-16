@@ -210,6 +210,7 @@ color: white;
 .footer{
 box-shadow:0 -5px 20px rgba(0,0,0,0.1);
 }
+
 .footer::before{
 content:"";
 width:120px;
