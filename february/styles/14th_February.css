@@ -222,6 +222,7 @@ padding:1.5rem;
 }
 
 }
+
 .footer{
 margin-top:3rem;
 background:var(--primary-dark);
@@ -233,11 +234,7 @@ flex-direction:column;
 gap:.4rem;
 font-size:.95rem;
 letter-spacing:.5px;
-}
-
-.footer span{
-color:var(--soft);
-font-size:.85rem;
+color: white;
 }
 
 /* efecto suave arriba */

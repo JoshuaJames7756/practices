@@ -113,6 +113,19 @@ transform:scale(1.05);
 box-shadow:0 12px 30px rgba(0,0,0,0.25);
 }
 
+/* ANIMATION */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 /* TABLET */
 
 @media(max-width:900px){
@@ -162,6 +175,35 @@ font-size:1.6rem;
 font-size:1rem;
 }
 
+}
+
+/* EXTRA SMALL */
+
+@media(max-width:350px){
+
+.logo{
+font-size:1.2rem;
+}
+
+.card{
+padding:1.5rem;
+}
+
+}
+
+/* FOOTER */
+.footer{
+margin-top:3rem;
+background:var(--primary-dark);
+color:var(--soft);
+text-align:center;
+padding:1.5rem 1rem;
+display:flex;
+flex-direction:column;
+gap:.4rem;
+font-size:.95rem;
+letter-spacing:.5px;
+color: white;
 }
 
 /* efecto suave arriba */
