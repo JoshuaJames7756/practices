@@ -167,16 +167,53 @@ flex-direction:column;
 gap:.3rem;
 }
 
+/* TABLET */
+
+@media(max-width:900px){
+
+.main-grid{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.photo img{
+max-width:400px;
+margin:auto;
+}
+
+}
+
 /* MOBILE */
 
 @media(max-width:600px){
 
-.title{
-font-size:1.7rem;
+.header{
+flex-direction:column;
+text-align:center;
+gap:.8rem;
 }
 
-.letter-box{
-padding:1.8rem;
+.logo{
+font-size:1.4rem;
+}
+
+.nav{
+justify-content:center;
+flex-wrap:wrap;
+gap:1rem;
+}
+
+.main-grid{
+padding:2rem 1.2rem;
+gap:2rem;
+}
+
+.card h1{
+font-size:1.6rem;
+}
+
+.card p{
+font-size:1rem;
 }
 
 }
