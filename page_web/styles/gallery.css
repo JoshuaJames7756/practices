@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+    --bg-1: #f5f1e8;
+    --bg-2: #e9f0f8;
+    --ink: #1b1b1b;
+    --muted: #5a5a5a;
+    --accent: #e0752a;
+    --card: #ffffff;
+    --shadow: 0 18px 40px rgba(27, 27, 27, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+    background:
+        radial-gradient(1200px 600px at 10% 0%, var(--bg-2), transparent 55%),
+        radial-gradient(1000px 600px at 90% 20%, #fce8d5, transparent 60%),
+        linear-gradient(180deg, var(--bg-1), #ffffff);
+}
+
+main {
+    min-height: 100vh;
+    display: grid;
+    gap: 32px;
+    padding: 48px 24px 64px;
+    max-width: 1100px;
+    margin: 0 auto;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    align-items: start;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+}
+
+.card {
+    width: min(520px, 100%);
+    padding: 28px 28px 32px;
+    background: var(--card);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(27, 27, 27, 0.08);
+}
+
+.card h2 {
+    margin: 0 0 18px;
+    font-family: "Playfair Display", "Times New Roman", serif;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(27, 27, 27, 0.18);
+    font-size: 15px;
+    margin-bottom: 16px;
+    background: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(224, 117, 42, 0.28);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px rgba(224, 117, 42, 0.35);
+}
+
+.sidebar {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(27, 27, 27, 0.08);
+    border-radius: 18px;
+    padding: 22px 22px 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+}
+
+.sidebar h3 {
+    margin: 0 0 10px;
+    font-family: "Playfair Display", "Times New Roman", serif;
+    font-size: 20px;
+}
+
+.sidebar p {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.sidebar ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--ink);
+    font-size: 14px;
+    display: grid;
+    gap: 8px;
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        order: 2;
+    }
+}
