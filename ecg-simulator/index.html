@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador ECG — Guyton & Hall Cap. 12</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══════════════════════════════════════ -->
+  <header class="hdr">
+    <div class="hdr-title">
+      <strong>SIMULADOR ECG</strong>&nbsp; · &nbsp;Fisiología Médica Guyton &amp; Hall&nbsp; · &nbsp;Capítulo 12
+    </div>
+    <div class="hdr-sub">Interpretación Electrocardiográfica — Anomalías del Corazón y Arritmias</div>
+  </header>
+
+  <!-- ═══ ECG MONITOR ═══════════════════════════════════ -->
+  <div class="mon-wrap">
+    <canvas id="ecg"></canvas>
+
+    <div class="mon-tl">
+      <div class="lead-tag">DII</div>
+      <div class="speed-tag" id="speedTag">25 mm/s &nbsp;·&nbsp; 10 mm/mV</div>
+    </div>
+
+    <div class="mon-tr">
+      <div class="hr-big" id="hrBig">72</div>
+      <div class="hr-unit">lpm</div>
+      <div><span class="rhythm-chip" id="rhythmChip">Sinusal Normal</span></div>
+    </div>
+
+    <div class="mon-bl">
+      <div class="cal-lbl">◀ 1 mV</div>
+    </div>
+  </div>
+
+  <!-- ═══ CONTROLS ═══════════════════════════════════════ -->
+  <div class="ctrl-bar">
+    <button class="btn-play" id="btnPlay" title="Play / Pausa [Espacio]">⏸</button>
+    <div class="ctrl-sep"></div>
+
+    <div>
+      <div class="ctrl-lbl">Velocidad de barrido</div>
+      <div class="ctrl-grp">
+        <button class="btn-s" data-speed="0.5">½× &nbsp;<span style="font-size:10px;opacity:.6">12.5 mm/s</span></button>
+        <button class="btn-s on" data-speed="1">1× &nbsp;<span style="font-size:10px;opacity:.6">25 mm/s</span></button>
+        <button class="btn-s" data-speed="2">2× &nbsp;<span style="font-size:10px;opacity:.6">50 mm/s</span></button>
+        <button class="btn-s" data-speed="4">4× &nbsp;<span style="font-size:10px;opacity:.6">100 mm/s</span></button>
+      </div>
+    </div>
+
+    <div class="ctrl-sep"></div>
+
+    <div>
+      <div class="ctrl-lbl">Amplitud (ganancia)</div>
+      <div class="ctrl-grp">
+        <button class="btn-s" data-gain="0.5">½× &nbsp;<span style="font-size:10px;opacity:.6">5 mm/mV</span></button>
+        <button class="btn-s on" data-gain="1">1× &nbsp;<span style="font-size:10px;opacity:.6">10 mm/mV</span></button>
+        <button class="btn-s" data-gain="2">2× &nbsp;<span style="font-size:10px;opacity:.6">20 mm/mV</span></button>
+      </div>
+    </div>
+
+    <div class="ctrl-right">Selecciona un ritmo en la tabla inferior ↓</div>
+  </div>
+
+  <!-- ═══ RHYTHM SELECTOR ═══════════════════════════════ -->
+  <div class="sel-sect">
+    <div class="sect-hdr">Ritmos Cardíacos — Capítulo 12 · Haz clic para visualizar</div>
+    <div class="cat-rows" id="catRows"></div>
+  </div>
+
+  <!-- ═══ INFO PANEL ════════════════════════════════════ -->
+  <div class="info-sect">
+    <div class="info-card">
+      <div class="card-hdr">Diagnóstico ECG — Características</div>
+      <div class="diag-name" id="iName">Ritmo Sinusal Normal</div>
+      <div class="diag-hr" id="iHR">FC: 60 – 100 lpm</div>
+      <ul class="feat-list" id="iFeats"></ul>
+    </div>
+    <div class="info-card">
+      <div class="card-hdr">Base Fisiológica — Guyton &amp; Hall Cap. 12</div>
+      <div class="guyton-txt" id="iRef"></div>
+      <div class="guyton-src">Guyton &amp; Hall · Tratado de Fisiología Médica · Cap. 12: Electrocardiografía</div>
+    </div>
+  </div>
+
+  <!-- ═══ KEYBOARD SHORTCUTS ════════════════════════════ -->
+  <div class="kb-hint">
+    <kbd>Espacio</kbd> Play/Pausa &nbsp;·&nbsp;
+    <kbd>←</kbd><kbd>→</kbd> Velocidad &nbsp;·&nbsp;
+    <kbd>↑</kbd><kbd>↓</kbd> Ganancia &nbsp;·&nbsp;
+    <kbd>1</kbd>–<kbd>0</kbd> Selección rápida de ritmo
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
