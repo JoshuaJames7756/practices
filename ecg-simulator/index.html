@@ -13,124 +13,199 @@
   <!-- ═══ PANTALLA DE ACCESO ════════════════════════════ -->
   <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
-
       <div class="login-logo">
         <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
-          <polyline
-            points="0,20 12,20 18,8 24,32 30,14 36,26 42,4 48,36 54,20 80,20"
+          <polyline points="0,20 12,20 18,8 24,32 30,14 36,26 42,4 48,36 54,20 80,20"
             fill="none" stroke="#00e676" stroke-width="2.5"
             stroke-linejoin="round" stroke-linecap="round"/>
         </svg>
       </div>
-
       <div class="login-title">SIMULADOR ECG</div>
       <div class="login-sub">Guyton &amp; Hall · Fisiología Médica · Cap. 12</div>
-
       <div class="login-field">
         <label class="login-lbl">Código de acceso</label>
-        <input
-          type="password"
-          id="loginInput"
-          class="login-input"
-          placeholder="Ingresá tu código"
-          autocomplete="off"
-          maxlength="20"
-        />
+        <input type="password" id="loginInput" class="login-input"
+          placeholder="Ingresá tu código" autocomplete="off" maxlength="20"/>
         <div class="login-error" id="loginError">Código incorrecto. Verificá tu compra.</div>
       </div>
-
       <button class="login-btn" id="loginBtn">INGRESAR</button>
-
       <div class="login-footer">
         ¿No tenés acceso? Contactanos por
         <span class="login-contact">WhatsApp</span>
       </div>
-
     </div>
   </div>
 
-  <!-- ═══ APP PRINCIPAL (oculta hasta login) ════════════ -->
+  <!-- ═══ APP PRINCIPAL ════════════════════════════════ -->
   <div class="app-wrap" id="appWrap">
 
-    <!-- ═══ HEADER ═══════════════════════════════════════ -->
+    <!-- HEADER -->
     <header class="hdr">
       <div class="hdr-title">
-        <strong>SIMULADOR ECG</strong>&nbsp; · &nbsp;Fisiología Médica Guyton &amp; Hall&nbsp; · &nbsp;Capítulo 12
+        <strong>SIMULADOR ECG</strong>&nbsp;·&nbsp;Guyton &amp; Hall&nbsp;·&nbsp;Cap. 12
       </div>
-      <div class="hdr-sub">Interpretación Electrocardiográfica — Anomalías del Corazón y Arritmias</div>
-      <button class="btn-logout" id="btnLogout" title="Cerrar sesión">⏻</button>
+      <div class="hdr-sub">Interpretación Electrocardiográfica</div>
+      <div class="hdr-actions">
+        <button class="btn-mode" id="btnQuiz"  title="Modo Quiz">🧠 Quiz</button>
+        <button class="btn-mode" id="btnSim"   title="Simulador">📡 Sim</button>
+        <button class="btn-logout" id="btnLogout" title="Cerrar sesión">⏻</button>
+      </div>
     </header>
 
-    <!-- ═══ ECG MONITOR ═══════════════════════════════════ -->
-    <div class="mon-wrap">
-      <canvas id="ecg"></canvas>
-      <div class="mon-tl">
-        <div class="lead-tag">DII</div>
-        <div class="speed-tag" id="speedTag">25 mm/s &nbsp;·&nbsp; 10 mm/mV</div>
+    <!-- ═══ SIMULADOR ═══════════════════════════════════ -->
+    <div id="simView">
+      <div class="mon-wrap">
+        <canvas id="ecg"></canvas>
+        <div class="mon-tl">
+          <div class="lead-tag">DII</div>
+          <div class="speed-tag" id="speedTag">25 mm/s &nbsp;·&nbsp; 10 mm/mV</div>
+        </div>
+        <div class="mon-tr">
+          <div class="hr-big" id="hrBig">72</div>
+          <div class="hr-unit">lpm</div>
+          <div><span class="rhythm-chip" id="rhythmChip">Sinusal Normal</span></div>
+        </div>
+        <div class="mon-bl"><div class="cal-lbl">◀ 1 mV</div></div>
       </div>
-      <div class="mon-tr">
-        <div class="hr-big" id="hrBig">72</div>
-        <div class="hr-unit">lpm</div>
-        <div><span class="rhythm-chip" id="rhythmChip">Sinusal Normal</span></div>
-      </div>
-      <div class="mon-bl">
-        <div class="cal-lbl">◀ 1 mV</div>
-      </div>
-    </div>
 
-    <!-- ═══ CONTROLS ═══════════════════════════════════════ -->
-    <div class="ctrl-bar">
-      <button class="btn-play" id="btnPlay" title="Play / Pausa [Espacio]">⏸</button>
-      <div class="ctrl-sep"></div>
-      <div>
-        <div class="ctrl-lbl">Velocidad de barrido</div>
-        <div class="ctrl-grp">
-          <button class="btn-s" data-speed="0.5">½× &nbsp;<span style="font-size:10px;opacity:.6">12.5 mm/s</span></button>
-          <button class="btn-s on" data-speed="1">1× &nbsp;<span style="font-size:10px;opacity:.6">25 mm/s</span></button>
-          <button class="btn-s" data-speed="2">2× &nbsp;<span style="font-size:10px;opacity:.6">50 mm/s</span></button>
-          <button class="btn-s" data-speed="4">4× &nbsp;<span style="font-size:10px;opacity:.6">100 mm/s</span></button>
+      <div class="ctrl-bar">
+        <button class="btn-play" id="btnPlay" title="Play / Pausa [Espacio]">⏸</button>
+        <div class="ctrl-sep"></div>
+        <div>
+          <div class="ctrl-lbl">Velocidad de barrido</div>
+          <div class="ctrl-grp">
+            <button class="btn-s" data-speed="0.5">½× <span style="font-size:10px;opacity:.6">12.5 mm/s</span></button>
+            <button class="btn-s on" data-speed="1">1× <span style="font-size:10px;opacity:.6">25 mm/s</span></button>
+            <button class="btn-s" data-speed="2">2× <span style="font-size:10px;opacity:.6">50 mm/s</span></button>
+            <button class="btn-s" data-speed="4">4× <span style="font-size:10px;opacity:.6">100 mm/s</span></button>
+          </div>
+        </div>
+        <div class="ctrl-sep"></div>
+        <div>
+          <div class="ctrl-lbl">Amplitud (ganancia)</div>
+          <div class="ctrl-grp">
+            <button class="btn-s" data-gain="0.5">½× <span style="font-size:10px;opacity:.6">5 mm/mV</span></button>
+            <button class="btn-s on" data-gain="1">1× <span style="font-size:10px;opacity:.6">10 mm/mV</span></button>
+            <button class="btn-s" data-gain="2">2× <span style="font-size:10px;opacity:.6">20 mm/mV</span></button>
+          </div>
+        </div>
+        <div class="ctrl-right">Selecciona un ritmo ↓</div>
+      </div>
+
+      <div class="sel-sect">
+        <div class="sect-hdr">Ritmos Cardíacos — Cap. 12 · Haz clic para visualizar</div>
+        <div class="cat-rows" id="catRows"></div>
+      </div>
+
+      <div class="info-sect">
+        <div class="info-card">
+          <div class="card-hdr">Diagnóstico ECG — Características</div>
+          <div class="diag-name" id="iName">Ritmo Sinusal Normal</div>
+          <div class="diag-hr" id="iHR">FC: 60 – 100 lpm</div>
+          <ul class="feat-list" id="iFeats"></ul>
+        </div>
+        <div class="info-card">
+          <div class="card-hdr">Base Fisiológica — Guyton &amp; Hall Cap. 12</div>
+          <div class="guyton-txt" id="iRef"></div>
+          <div class="guyton-src">Guyton &amp; Hall · Tratado de Fisiología Médica · Cap. 12</div>
         </div>
       </div>
-      <div class="ctrl-sep"></div>
-      <div>
-        <div class="ctrl-lbl">Amplitud (ganancia)</div>
-        <div class="ctrl-grp">
-          <button class="btn-s" data-gain="0.5">½× &nbsp;<span style="font-size:10px;opacity:.6">5 mm/mV</span></button>
-          <button class="btn-s on" data-gain="1">1× &nbsp;<span style="font-size:10px;opacity:.6">10 mm/mV</span></button>
-          <button class="btn-s" data-gain="2">2× &nbsp;<span style="font-size:10px;opacity:.6">20 mm/mV</span></button>
+
+      <div class="kb-hint">
+        <kbd>Espacio</kbd> Play/Pausa &nbsp;·&nbsp;
+        <kbd>←</kbd><kbd>→</kbd> Velocidad &nbsp;·&nbsp;
+        <kbd>↑</kbd><kbd>↓</kbd> Ganancia &nbsp;·&nbsp;
+        <kbd>1</kbd>–<kbd>0</kbd> Ritmo rápido
+      </div>
+    </div>
+
+    <!-- ═══ QUIZ ═════════════════════════════════════════ -->
+    <div id="quizView" class="hidden">
+
+      <!-- Pantalla de inicio del quiz -->
+      <div id="quizStart" class="quiz-screen">
+        <div class="quiz-start-icon">🧠</div>
+        <div class="quiz-start-title">Modo Quiz</div>
+        <div class="quiz-start-sub">Ponete a prueba — 10 preguntas · 15 segundos cada una</div>
+        <div class="quiz-mode-btns">
+          <button class="quiz-mode-btn" id="startModeA">
+            <span class="qmb-icon">📡</span>
+            <span class="qmb-label">Modo A</span>
+            <span class="qmb-desc">Ves el ECG animado<br>→ identificás el ritmo</span>
+          </button>
+          <button class="quiz-mode-btn" id="startModeB">
+            <span class="qmb-icon">📋</span>
+            <span class="qmb-label">Modo B</span>
+            <span class="qmb-desc">Leés las características<br>→ identificás el ritmo</span>
+          </button>
         </div>
       </div>
-      <div class="ctrl-right">Selecciona un ritmo en la tabla inferior ↓</div>
-    </div>
 
-    <!-- ═══ RHYTHM SELECTOR ═══════════════════════════════ -->
-    <div class="sel-sect">
-      <div class="sect-hdr">Ritmos Cardíacos — Capítulo 12 · Haz clic para visualizar</div>
-      <div class="cat-rows" id="catRows"></div>
-    </div>
+      <!-- Pregunta activa -->
+      <div id="quizQuestion" class="quiz-screen hidden">
 
-    <!-- ═══ INFO PANEL ════════════════════════════════════ -->
-    <div class="info-sect">
-      <div class="info-card">
-        <div class="card-hdr">Diagnóstico ECG — Características</div>
-        <div class="diag-name" id="iName">Ritmo Sinusal Normal</div>
-        <div class="diag-hr" id="iHR">FC: 60 – 100 lpm</div>
-        <ul class="feat-list" id="iFeats"></ul>
+        <!-- Barra superior: pregunta X/10 + timer -->
+        <div class="quiz-topbar">
+          <div class="quiz-progress-wrap">
+            <div class="quiz-progress-bar" id="quizProgressBar"></div>
+          </div>
+          <div class="quiz-meta">
+            <span id="quizQNum">1 / 10</span>
+            <div class="quiz-timer-wrap">
+              <div class="quiz-timer-ring">
+                <svg viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r="15.9" fill="none" stroke="#162030" stroke-width="3"/>
+                  <circle cx="18" cy="18" r="15.9" fill="none" stroke="#00e676" stroke-width="3"
+                    stroke-dasharray="100 100" stroke-dashoffset="0"
+                    stroke-linecap="round" transform="rotate(-90 18 18)"
+                    id="timerCircle"/>
+                </svg>
+                <span class="quiz-timer-num" id="timerNum">15</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modo A: canvas ECG -->
+        <div id="quizCanvasWrap" class="quiz-canvas-wrap">
+          <canvas id="quizEcg"></canvas>
+          <div class="quiz-canvas-label">¿Qué ritmo es este ECG?</div>
+        </div>
+
+        <!-- Modo B: características -->
+        <div id="quizFeatWrap" class="quiz-feat-wrap hidden">
+          <div class="quiz-feat-title">¿Qué ritmo corresponde a estas características?</div>
+          <ul class="quiz-feat-list" id="quizFeatList"></ul>
+        </div>
+
+        <!-- Opciones de respuesta -->
+        <div class="quiz-options" id="quizOptions"></div>
+
+        <!-- Feedback correcto/incorrecto -->
+        <div class="quiz-feedback hidden" id="quizFeedback">
+          <div class="qf-result" id="qfResult"></div>
+          <div class="qf-correct" id="qfCorrect"></div>
+          <div class="qf-ref" id="qfRef"></div>
+          <button class="qf-next" id="qfNext">Siguiente →</button>
+        </div>
+
       </div>
-      <div class="info-card">
-        <div class="card-hdr">Base Fisiológica — Guyton &amp; Hall Cap. 12</div>
-        <div class="guyton-txt" id="iRef"></div>
-        <div class="guyton-src">Guyton &amp; Hall · Tratado de Fisiología Médica · Cap. 12: Electrocardiografía</div>
-      </div>
-    </div>
 
-    <!-- ═══ KEYBOARD SHORTCUTS ════════════════════════════ -->
-    <div class="kb-hint">
-      <kbd>Espacio</kbd> Play/Pausa &nbsp;·&nbsp;
-      <kbd>←</kbd><kbd>→</kbd> Velocidad &nbsp;·&nbsp;
-      <kbd>↑</kbd><kbd>↓</kbd> Ganancia &nbsp;·&nbsp;
-      <kbd>1</kbd>–<kbd>0</kbd> Selección rápida de ritmo
-    </div>
+      <!-- Pantalla de resultados -->
+      <div id="quizResults" class="quiz-screen hidden">
+        <div class="qr-score-wrap">
+          <div class="qr-score" id="qrScore">0/10</div>
+          <div class="qr-label" id="qrLabel">—</div>
+        </div>
+        <div class="qr-stars" id="qrStars"></div>
+        <div class="qr-detail" id="qrDetail"></div>
+        <div class="qr-btns">
+          <button class="qr-btn-retry" id="qrRetry">🔄 Repetir quiz</button>
+          <button class="qr-btn-sim"   id="qrSim">📡 Ir al simulador</button>
+        </div>
+      </div>
+
+    </div><!-- /quizView -->
 
   </div><!-- /app-wrap -->
 
