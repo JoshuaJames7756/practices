@@ -10,6 +10,19 @@ button { cursor:pointer; border:none; outline:none; -webkit-tap-highlight-color:
 .hidden { display:none !important; }
 
 /* ══════════════════════════════════════════
+   VISTAS — se ocultan SIN destruir el canvas
+   Usamos opacity + pointer-events, NO height:0
+══════════════════════════════════════════ */
+#simView,
+#quizView {
+  transition: opacity .15s;
+}
+#simView.view-hidden,
+#quizView.view-hidden {
+  display: none;
+}
+
+/* ══════════════════════════════════════════
    LOGIN
 ══════════════════════════════════════════ */
 .login-overlay {
@@ -46,22 +59,12 @@ button { cursor:pointer; border:none; outline:none; -webkit-tap-highlight-color:
 .app-wrap.visible { display:block; }
 
 /* ── HEADER ── */
-.hdr {
-  display:flex; align-items:center; gap:10px;
-  padding:7px 18px; background:#08101a;
-  border-bottom:1px solid #162030;
-  position:sticky; top:0; z-index:10;
-}
+.hdr { display:flex; align-items:center; gap:10px; padding:7px 18px; background:#08101a; border-bottom:1px solid #162030; position:sticky; top:0; z-index:10; }
 .hdr-title { font-size:11.5px; color:#5a7a9a; letter-spacing:.8px; text-transform:uppercase; flex:1; }
 .hdr-title strong { color:#00e676; font-size:13.5px; letter-spacing:0; }
 .hdr-sub { font-size:10.5px; color:#3a5870; }
 .hdr-actions { display:flex; align-items:center; gap:6px; flex-shrink:0; }
-
-.btn-mode {
-  padding:5px 10px; font-size:11px;
-  background:#0c1824; border:1px solid #1a2c3e;
-  color:#486880; border-radius:4px; transition:all .12s;
-}
+.btn-mode { padding:5px 10px; font-size:11px; background:#0c1824; border:1px solid #1a2c3e; color:#486880; border-radius:4px; transition:all .12s; }
 .btn-mode:hover { border-color:#2a4a6e; color:#7aaace; }
 .btn-mode.active { background:#081a14; border-color:#00e676; color:#00e676; }
 .btn-logout { font-size:16px; color:#2e4258; background:none; padding:4px 6px; border-radius:4px; transition:color .2s; }
@@ -121,79 +124,48 @@ button { cursor:pointer; border:none; outline:none; -webkit-tap-highlight-color:
    QUIZ
 ══════════════════════════════════════════ */
 #quizView { padding:0; }
-
-.quiz-screen {
-  display:flex; flex-direction:column; align-items:center;
-  padding:28px 18px; gap:18px; min-height:calc(100vh - 48px);
-}
-
-/* Inicio */
+.quiz-screen { display:flex; flex-direction:column; align-items:center; padding:28px 18px; gap:18px; min-height:calc(100vh - 48px); }
 .quiz-start-icon { font-size:52px; margin-bottom:4px; }
 .quiz-start-title { font-family:'Courier New',monospace; font-size:22px; font-weight:700; color:#00e676; letter-spacing:2px; text-shadow:0 0 18px rgba(0,230,118,.4); }
 .quiz-start-sub { font-size:12px; color:#3a5870; text-align:center; }
 .quiz-mode-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
-.quiz-mode-btn {
-  display:flex; flex-direction:column; align-items:center; gap:6px;
-  padding:20px 24px; background:#08101a; border:1px solid #1a2c3e;
-  border-radius:10px; color:#d8e8f4; transition:all .15s; min-width:150px;
-}
+.quiz-mode-btn { display:flex; flex-direction:column; align-items:center; gap:6px; padding:20px 24px; background:#08101a; border:1px solid #1a2c3e; border-radius:10px; color:#d8e8f4; transition:all .15s; min-width:150px; }
 .quiz-mode-btn:hover { border-color:#00e676; background:#081a14; box-shadow:0 0 20px rgba(0,230,118,.15); }
 .qmb-icon { font-size:28px; }
 .qmb-label { font-size:14px; font-weight:700; color:#00e676; }
 .qmb-desc { font-size:11px; color:#3a5870; text-align:center; line-height:1.5; }
-
-/* Topbar pregunta */
 .quiz-topbar { width:100%; display:flex; flex-direction:column; gap:8px; }
 .quiz-progress-wrap { width:100%; height:4px; background:#0e1c2c; border-radius:2px; overflow:hidden; }
 .quiz-progress-bar { height:100%; background:#00e676; border-radius:2px; transition:width .4s; width:0%; }
 .quiz-meta { display:flex; align-items:center; justify-content:space-between; }
 #quizQNum { font-size:11px; color:#3a5870; letter-spacing:.5px; }
-
-/* Timer circular */
 .quiz-timer-wrap { display:flex; align-items:center; }
 .quiz-timer-ring { position:relative; width:44px; height:44px; }
 .quiz-timer-ring svg { width:100%; height:100%; }
 .quiz-timer-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Courier New',monospace; font-size:13px; font-weight:700; color:#00e676; }
 #timerCircle { transition:stroke-dashoffset .9s linear, stroke .3s; }
-
-/* Canvas quiz modo A */
 .quiz-canvas-wrap { width:100%; position:relative; background:#020408; border:1px solid #0e1c2c; border-radius:8px; overflow:hidden; line-height:0; }
 #quizEcg { display:block; width:100%; }
 .quiz-canvas-label { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-size:10px; color:#2e4860; letter-spacing:.5px; white-space:nowrap; }
-
-/* Features quiz modo B */
 .quiz-feat-wrap { width:100%; background:#08101a; border:1px solid #162030; border-radius:8px; padding:16px; }
 .quiz-feat-title { font-size:12px; color:#3a5870; text-transform:uppercase; letter-spacing:.6px; margin-bottom:12px; }
 .quiz-feat-list { list-style:none; }
 .quiz-feat-list li { font-size:13px; color:#bcd4e8; padding:5px 0; border-bottom:1px solid #10202e; line-height:1.45; }
 .quiz-feat-list li::before { content:'▸ '; color:#00e676; opacity:.45; }
-
-/* Opciones */
 .quiz-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; }
-.quiz-opt {
-  padding:12px 14px; background:#08101a; border:1px solid #1a2c3e;
-  border-radius:8px; color:#bcd4e8; font-size:13px; text-align:left;
-  transition:all .13s; line-height:1.3;
-}
+.quiz-opt { padding:12px 14px; background:#08101a; border:1px solid #1a2c3e; border-radius:8px; color:#bcd4e8; font-size:13px; text-align:left; transition:all .13s; line-height:1.3; }
 .quiz-opt:hover:not(:disabled) { border-color:#2a4a6e; background:#0c1824; }
 .quiz-opt.correct { border-color:#00e676 !important; background:rgba(0,230,118,.12) !important; color:#00e676 !important; }
-.quiz-opt.wrong   { border-color:#ff5252 !important; background:rgba(255,82,82,.10) !important; color:#ff5252 !important; }
+.quiz-opt.wrong { border-color:#ff5252 !important; background:rgba(255,82,82,.10) !important; color:#ff5252 !important; }
 .quiz-opt:disabled { cursor:default; opacity:.7; }
-
-/* Feedback */
-.quiz-feedback {
-  width:100%; background:#08101a; border:1px solid #162030;
-  border-radius:10px; padding:18px; display:flex; flex-direction:column; gap:10px;
-}
+.quiz-feedback { width:100%; background:#08101a; border:1px solid #162030; border-radius:10px; padding:18px; display:flex; flex-direction:column; gap:10px; }
 .qf-result { font-size:20px; font-weight:700; letter-spacing:1px; }
-.qf-result.ok  { color:#00e676; }
+.qf-result.ok { color:#00e676; }
 .qf-result.bad { color:#ff5252; }
 .qf-correct { font-size:13px; color:#5a9070; }
 .qf-ref { font-size:12px; color:#4a6880; line-height:1.6; border-left:2px solid rgba(0,230,118,.2); padding-left:10px; }
 .qf-next { align-self:flex-end; padding:9px 20px; background:rgba(0,230,118,.08); border:1px solid #00e676; border-radius:6px; color:#00e676; font-size:13px; font-weight:700; letter-spacing:.5px; transition:all .15s; }
 .qf-next:hover { background:rgba(0,230,118,.2); }
-
-/* Resultados */
 .qr-score-wrap { display:flex; flex-direction:column; align-items:center; margin-top:12px; }
 .qr-score { font-family:'Courier New',monospace; font-size:56px; font-weight:700; color:#00e676; line-height:1; text-shadow:0 0 24px rgba(0,230,118,.5); }
 .qr-label { font-size:14px; color:#3a7060; margin-top:6px; letter-spacing:.5px; }
@@ -202,8 +174,8 @@ button { cursor:pointer; border:none; outline:none; -webkit-tap-highlight-color:
 .qr-detail-row { display:flex; justify-content:space-between; align-items:center; padding:5px 0; border-bottom:1px solid #10202e; font-size:12px; }
 .qr-detail-row:last-child { border-bottom:none; }
 .qr-detail-name { color:#7a9cbc; }
-.qr-detail-ok   { color:#00e676; font-size:14px; }
-.qr-detail-bad  { color:#ff5252; font-size:14px; }
+.qr-detail-ok { color:#00e676; font-size:14px; }
+.qr-detail-bad { color:#ff5252; font-size:14px; }
 .qr-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
 .qr-btn-retry { padding:11px 22px; background:rgba(0,230,118,.08); border:1px solid #00e676; border-radius:6px; color:#00e676; font-size:13px; font-weight:700; transition:all .15s; }
 .qr-btn-retry:hover { background:rgba(0,230,118,.2); }
