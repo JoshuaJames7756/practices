@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Routines – English Class A1/A2</title>
+<style>
+  :root {
+    --purple: #7F77DD; --purple-l: #EEEDFE; --purple-d: #3C3489;
+    --teal: #1D9E75; --teal-l: #E1F5EE; --teal-d: #0F6E56;
+    --coral: #D85A30; --coral-l: #FAECE7; --coral-d: #993C1D;
+    --amber: #BA7517; --amber-l: #FAEEDA; --amber-d: #854F0B;
+    --blue: #378ADD; --blue-l: #E6F1FB; --blue-d: #0C447C;
+    --green: #639922; --green-l: #EAF3DE; --green-d: #3B6D11;
+    --gray: #888780; --gray-l: #F1EFE8; --gray-d: #444441;
+    --pink: #D4537E; --pink-l: #FBEAF0; --pink-d: #72243E;
+    --bg: #ffffff; --text: #2C2C2A; --text2: #5F5E5A; --border: #D3D1C7;
+    --card: #F8F7F2;
+    --radius: 12px; --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0ede4; color: var(--text); line-height: 1.6; }
+
+  /* HEADER */
+  .hero { background: linear-gradient(135deg, #534AB7 0%, #7F77DD 50%, #AFA9EC 100%); color: #fff; padding: 40px 24px 32px; text-align: center; }
+  .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 16px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .hero h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; }
+  .hero p { font-size: 1.05rem; opacity: 0.88; max-width: 560px; margin: 0 auto 20px; }
+  .hero-meta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero-meta span { background: rgba(255,255,255,0.18); border-radius: 20px; padding: 4px 14px; font-size: 13px; }
+
+  /* NAV */
+  .nav { background: #fff; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100; overflow-x: auto; }
+  .nav-inner { display: flex; padding: 0 16px; min-width: max-content; }
+  .nav-btn { padding: 14px 18px; font-size: 13px; font-weight: 600; color: var(--text2); border: none; background: none; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all .2s; }
+  .nav-btn:hover { color: var(--purple); }
+  .nav-btn.active { color: var(--purple); border-bottom-color: var(--purple); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 28px 16px; max-width: 860px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card { background: #fff; border-radius: var(--radius); padding: 24px; margin-bottom: 20px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .card-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-intro { background: var(--purple-l); border-left: 4px solid var(--purple); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 18px; margin-bottom: 20px; font-size: 14px; color: var(--purple-d); }
+
+  /* VOCAB TABLE */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .vocab-card { background: var(--card); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--border); transition: transform .15s, box-shadow .15s; cursor: pointer; }
+  .vocab-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .vocab-card .verb-en { font-size: 1.05rem; font-weight: 700; color: var(--purple-d); }
+  .vocab-card .verb-3rd { font-size: 0.95rem; color: var(--coral); font-weight: 600; margin-top: 2px; }
+  .vocab-card .verb-es { font-size: 0.88rem; color: var(--text2); margin-top: 4px; font-style: italic; }
+  .vocab-card .example { font-size: 0.85rem; color: var(--text); margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; }
+  .vocab-card .tip { font-size: 0.78rem; background: var(--amber-l); color: var(--amber-d); border-radius: 4px; padding: 3px 8px; margin-top: 6px; display: inline-block; }
+  .rule-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 2px 10px; border-radius: 12px; margin-top: 6px; }
+  .rule-s { background: var(--teal-l); color: var(--teal-d); }
+  .rule-es { background: var(--coral-l); color: var(--coral-d); }
+  .rule-ies { background: var(--amber-l); color: var(--amber-d); }
+
+  /* GRAMMAR */
+  .grammar-rule { background: var(--card); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 14px; border-left: 4px solid var(--purple); }
+  .grammar-rule h4 { font-size: 1rem; color: var(--purple-d); margin-bottom: 10px; }
+  .examples-list { list-style: none; }
+  .examples-list li { padding: 5px 0; font-size: 0.92rem; border-bottom: 1px solid var(--border); }
+  .examples-list li:last-child { border-bottom: none; }
+  .hi-verb { color: var(--coral); font-weight: 700; }
+  .sentence-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 12px; }
+  .sentence-table th { background: var(--purple); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+  .sentence-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .sentence-table tr:nth-child(even) td { background: var(--purple-l); }
+  .mistake-box { background: #fff3cd; border: 1px solid #ffc107; border-radius: var(--radius-sm); padding: 14px; margin-bottom: 10px; font-size: 0.9rem; }
+  .mistake-box .wrong { color: #c0392b; text-decoration: line-through; }
+  .mistake-box .right { color: var(--teal-d); font-weight: 600; }
+
+  /* READING */
+  .reading-text { background: var(--blue-l); border-radius: var(--radius-sm); padding: 20px; font-size: 0.97rem; line-height: 1.9; border: 1px solid #B5D4F4; }
+  .reading-text .verb-highlight { color: var(--blue-d); font-weight: 700; border-bottom: 2px solid var(--blue); }
+  .time-label { display: inline-block; background: var(--amber-l); color: var(--amber-d); font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-right: 4px; }
+  .questions-list { list-style: none; counter-reset: q; }
+  .questions-list li { counter-increment: q; padding: 10px 0 10px 36px; border-bottom: 1px solid var(--border); font-size: 0.93rem; position: relative; }
+  .questions-list li::before { content: counter(q); position: absolute; left: 0; top: 10px; width: 24px; height: 24px; background: var(--purple); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; text-align: center; line-height: 24px; }
+
+  /* ACTIVITIES */
+  .activity-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .act-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .act1 { background: var(--purple); }
+  .act2 { background: var(--teal); }
+  .act3 { background: var(--coral); }
+  .act4 { background: var(--amber); }
+
+  /* Activity 1 – match */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .match-col { display: flex; flex-direction: column; gap: 8px; }
+  .match-item { padding: 10px 14px; border-radius: var(--radius-sm); border: 2px solid var(--border); cursor: pointer; font-size: 0.9rem; transition: all .2s; user-select: none; background: #fff; }
+  .match-item.selected-word { background: var(--purple-l); border-color: var(--purple); }
+  .match-item.selected-def { background: var(--teal-l); border-color: var(--teal); }
+  .match-item.correct { background: var(--teal-l); border-color: var(--teal); color: var(--teal-d); }
+  .match-item.wrong { background: #FCEBEB; border-color: #E24B4A; color: #A32D2D; animation: shake .3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+  .match-item.disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Activity 2 – fill blanks */
+  .fill-sentence { margin-bottom: 16px; font-size: 0.95rem; line-height: 2; }
+  .blank-input { border: none; border-bottom: 2px solid var(--purple); padding: 2px 8px; font-size: 0.95rem; font-family: inherit; width: 110px; text-align: center; outline: none; background: transparent; color: var(--text); }
+  .blank-input.correct { border-color: var(--teal); color: var(--teal-d); background: var(--teal-l); border-radius: 4px; }
+  .blank-input.wrong { border-color: #E24B4A; color: #A32D2D; background: #FCEBEB; border-radius: 4px; }
+  .verb-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .verb-chip { background: var(--purple-l); color: var(--purple-d); padding: 6px 14px; border-radius: 16px; font-size: 0.88rem; font-weight: 600; }
+
+  /* Activity 3 – unscramble */
+  .scramble-words { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .word-chip { background: var(--amber-l); color: var(--amber-d); padding: 6px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; border: 2px solid transparent; transition: all .15s; user-select: none; }
+  .word-chip:hover { border-color: var(--amber); }
+  .word-chip.used { opacity: 0.35; cursor: not-allowed; }
+  .answer-zone { min-height: 44px; background: var(--card); border: 2px dashed var(--border); border-radius: var(--radius-sm); padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+  .answer-zone .placed-word { background: var(--blue-l); color: var(--blue-d); padding: 5px 11px; border-radius: 7px; font-size: 0.9rem; cursor: pointer; border: 1px solid #B5D4F4; }
+
+  /* Activity 4 – error */
+  .error-sentence { background: #fff3cd; border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 10px; font-size: 0.93rem; }
+  .error-input { border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 0.88rem; font-family: inherit; outline: none; margin-top: 6px; width: 100%; }
+  .error-input.correct { border-color: var(--teal); background: var(--teal-l); color: var(--teal-d); }
+  .error-input.wrong { border-color: #E24B4A; background: #FCEBEB; }
+
+  /* SPEAKING */
+  .dialogue { background: var(--card); border-radius: var(--radius-sm); padding: 16px; font-size: 0.92rem; }
+  .dialogue-line { display: flex; gap: 10px; margin-bottom: 10px; }
+  .speaker { font-weight: 700; min-width: 38px; }
+  .speaker-a { color: var(--purple-d); }
+  .speaker-b { color: var(--teal-d); }
+  .question-card { background: var(--purple-l); border: 1px solid #CECBF6; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.9rem; color: var(--purple-d); font-weight: 600; }
+  .q-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
+
+  /* WRITING */
+  .scaffold-list { list-style: none; }
+  .scaffold-list li { padding: 10px 14px; margin-bottom: 8px; background: var(--card); border-radius: var(--radius-sm); border-left: 4px solid var(--purple); font-size: 0.93rem; }
+  .scaffold-list li span { color: var(--purple-d); font-weight: 700; }
+  .student-textarea { width: 100%; min-height: 160px; border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 12px; font-family: inherit; font-size: 0.93rem; resize: vertical; outline: none; transition: border .2s; }
+  .student-textarea:focus { border-color: var(--purple); }
+
+  /* EXIT TICKET */
+  .ticket-q { background: var(--card); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 12px; }
+  .ticket-q p { font-weight: 600; margin-bottom: 10px; font-size: 0.93rem; }
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .opt-btn { padding: 9px 12px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: #fff; cursor: pointer; font-size: 0.88rem; font-family: inherit; text-align: left; transition: all .15s; }
+  .opt-btn:hover { border-color: var(--purple); }
+  .opt-btn.correct { background: var(--teal-l); border-color: var(--teal); color: var(--teal-d); font-weight: 600; }
+  .opt-btn.wrong { background: #FCEBEB; border-color: #E24B4A; color: #A32D2D; }
+
+  /* ANSWER KEY */
+  .answer-key { background: #fffde7; border: 1px solid #ffc107; border-radius: var(--radius-sm); padding: 16px; font-size: 0.9rem; }
+  .answer-key h4 { color: var(--amber-d); margin-bottom: 10px; }
+  .answer-key ol { padding-left: 20px; }
+  .answer-key li { margin-bottom: 6px; }
+
+  /* BTN */
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+  .btn-primary { background: var(--purple); color: #fff; }
+  .btn-primary:hover { background: var(--purple-d); }
+  .btn-teal { background: var(--teal); color: #fff; }
+  .btn-teal:hover { background: var(--teal-d); }
+  .btn-sm { padding: 7px 16px; font-size: 0.82rem; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+
+  /* SCORE */
+  .score-badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+  .feedback { margin-top: 8px; font-size: 0.88rem; padding: 8px 12px; border-radius: 6px; }
+  .feedback.ok { background: var(--teal-l); color: var(--teal-d); }
+  .feedback.err { background: var(--coral-l); color: var(--coral-d); }
+
+  /* PROGRESS */
+  .progress-bar { height: 6px; background: var(--border); border-radius: 3px; margin-top: 20px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--purple), var(--teal)); border-radius: 3px; transition: width .4s; }
+
+  /* TEACHER NOTE */
+  .teacher-note { background: #fff8e1; border: 1px solid #ffe082; border-radius: var(--radius-sm); padding: 14px 16px; font-size: 0.88rem; color: #6d4c00; margin-top: 14px; }
+  .teacher-note strong { display: block; margin-bottom: 4px; }
+
+  /* RESPONSIVE */
+  @media(max-width:580px){
+    .hero h1{font-size:1.7rem;}
+    .match-grid{grid-template-columns:1fr;}
+    .options-grid{grid-template-columns:1fr;}
+    .q-cards-grid{grid-template-columns:1fr;}
+  }
+  @media print {
+    .nav,.btn,.hero-meta{display:none;}
+    .section{display:block!important;page-break-after:always;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">🇬🇧 English Lesson Plan</div>
+  <h1>Daily Routines</h1>
+  <p>Una clase completa de inglés sobre rutinas diarias — diseñada para jóvenes hispanohablantes</p>
+  <div class="hero-meta">
+    <span>📚 A1 – A2</span>
+    <span>⏱ 60 minutos</span>
+    <span>👦 Jóvenes 12–17 años</span>
+    <span>🎯 Present Simple + -s endings</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showSection('vocab')">📖 Vocabulario</button>
+    <button class="nav-btn" onclick="showSection('grammar')">📐 Gramática</button>
+    <button class="nav-btn" onclick="showSection('reading')">📄 Lectura</button>
+    <button class="nav-btn" onclick="showSection('activities')">✏️ Actividades</button>
+    <button class="nav-btn" onclick="showSection('speaking')">🗣 Speaking</button>
+    <button class="nav-btn" onclick="showSection('writing')">✍️ Writing</button>
+    <button class="nav-btn" onclick="showSection('exit')">✅ Exit Ticket</button>
+    <button class="nav-btn" onclick="showSection('keys')">🔑 Answer Key</button>
+  </div>
+</nav>
+
+<!-- ═══════════════ SECTION 1: VOCAB ═══════════════ -->
+<section id="vocab" class="section active">
+  <div class="section-intro">
+    ⏱ <strong>Tiempo sugerido: 12 min</strong> — Introduce el vocabulario usando el cuerpo (mímica). Luego pide a los estudiantes que señalen la tarjeta mientras tú dices la palabra.
+  </div>
+
+  <div class="card">
+    <div class="card-title">📖 Daily Routine Verbs — Verbos de Rutina Diaria
+      <small style="font-weight:400;color:var(--text2);font-size:0.82rem;margin-left:8px;">Haz clic en cada tarjeta para ver el ejemplo</small>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+      <span style="font-size:0.82rem;background:var(--teal-l);color:var(--teal-d);padding:4px 12px;border-radius:12px;font-weight:600;">+ s → base verb</span>
+      <span style="font-size:0.82rem;background:var(--coral-l);color:var(--coral-d);padding:4px 12px;border-radius:12px;font-weight:600;">+ es → sh/ch/ss/x/o</span>
+      <span style="font-size:0.82rem;background:var(--amber-l);color:var(--amber-d);padding:4px 12px;border-radius:12px;font-weight:600;">y → ies → consonante + y</span>
+    </div>
+
+    <div class="vocab-grid" id="vocab-grid"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🕐 Time Expressions — Expresiones de Tiempo</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">in the morning</strong><br><span style="font-size:0.85rem;color:var(--text2)">por la mañana</span></div>
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">in the afternoon</strong><br><span style="font-size:0.85rem;color:var(--text2)">por la tarde</span></div>
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">in the evening</strong><br><span style="font-size:0.85rem;color:var(--text2)">al atardecer / noche temprana</span></div>
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">at night</strong><br><span style="font-size:0.85rem;color:var(--text2)">en la noche</span></div>
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">every day</strong><br><span style="font-size:0.85rem;color:var(--text2)">todos los días</span></div>
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">at 7 o'clock</strong><br><span style="font-size:0.85rem;color:var(--text2)">a las 7 en punto</span></div>
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">usually / always / never</strong><br><span style="font-size:0.85rem;color:var(--text2)">usualmente / siempre / nunca</span></div>
+      <div style="background:var(--card);padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border)"><strong style="color:var(--purple-d)">before / after</strong><br><span style="font-size:0.85rem;color:var(--text2)">antes / después</span></div>
+    </div>
+  </div>
+
+  <div class="teacher-note">
+    <strong>👩‍🏫 Nota para el profesor:</strong>
+    Realiza una actividad de "mímica rápida" — di el verbo en español, los estudiantes hacen el movimiento y dicen la palabra en inglés. Luego invierte: tú haces la mímica, ellos dicen el verbo. 5 min de calentamiento muy efectivo.
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 2: GRAMMAR ═══════════════ -->
+<section id="grammar" class="section">
+  <div class="section-intro">
+    ⏱ <strong>Tiempo sugerido: 12 min</strong> — Explica primero el uso del Present Simple para rutinas, luego enfócate en las -s endings. Usa la tabla de forma / negativa / pregunta.
+  </div>
+
+  <div class="card">
+    <div class="card-title">📐 Present Simple — When & Why / Cuándo y Por Qué</div>
+    <div class="grammar-rule">
+      <h4>✅ We use Present Simple for routines and habits / Lo usamos para rutinas y hábitos</h4>
+      <ul class="examples-list">
+        <li>She <span class="hi-verb">wakes up</span> at 6:30 every morning. <em style="color:var(--text2)">(rutina diaria)</em></li>
+        <li>He <span class="hi-verb">studies</span> English on Mondays. <em style="color:var(--text2)">(hábito semanal)</em></li>
+        <li>They always <span class="hi-verb">eat</span> breakfast together. <em style="color:var(--text2)">(hábito con adverbio)</em></li>
+      </ul>
+    </div>
+
+    <div class="grammar-rule" style="border-left-color:var(--coral);">
+      <h4>⚠️ -S endings rules — Reglas de terminaciones en -S <em style="font-size:0.82rem;color:var(--text2)">(para he / she / it)</em></h4>
+      <table class="sentence-table" style="margin-top:0;">
+        <thead>
+          <tr><th>Regla</th><th>Ejemplo base</th><th>He / She / It</th><th>Español</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rule-tag rule-s">+ s</span> (mayoría)</td><td>wake</td><td style="color:var(--coral);font-weight:700">wake<strong>s</strong></td><td>despertar</td></tr>
+          <tr><td><span class="rule-tag rule-s">+ s</span></td><td>drink</td><td style="color:var(--coral);font-weight:700">drink<strong>s</strong></td><td>tomar / beber</td></tr>
+          <tr><td><span class="rule-tag rule-es">+ es</span> (sh/ch/ss/o/x)</td><td>watch</td><td style="color:var(--coral);font-weight:700">watch<strong>es</strong></td><td>ver</td></tr>
+          <tr><td><span class="rule-tag rule-es">+ es</span></td><td>go</td><td style="color:var(--coral);font-weight:700">go<strong>es</strong></td><td>ir</td></tr>
+          <tr><td><span class="rule-tag rule-ies">y → ies</span> (consonante + y)</td><td>study</td><td style="color:var(--coral);font-weight:700">stud<strong>ies</strong></td><td>estudiar</td></tr>
+          <tr><td><span class="rule-tag rule-s">excepción</span> (vocal + y)</td><td>play</td><td style="color:var(--coral);font-weight:700">play<strong>s</strong></td><td>jugar</td></tr>
+          <tr><td><span class="rule-tag rule-es">irregular</span></td><td>have</td><td style="color:var(--coral);font-weight:700">ha<strong>s</strong></td><td>tener</td></tr>
+          <tr><td><span class="rule-tag rule-es">irregular</span></td><td>be</td><td style="color:var(--coral);font-weight:700"><strong>is</strong></td><td>ser / estar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grammar-rule" style="border-left-color:var(--teal);">
+      <h4>✅ Affirmative / ❌ Negative / ❓ Question — Formas</h4>
+      <table class="sentence-table" style="margin-top:0;">
+        <thead>
+          <tr><th>Form</th><th>Structure</th><th>Example (He)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>✅ <strong>Affirmative</strong></td>
+            <td>Subject + verb+s + …</td>
+            <td>He <span class="hi-verb">brushes</span> his teeth.</td>
+          </tr>
+          <tr>
+            <td>❌ <strong>Negative</strong></td>
+            <td>Subject + <strong>doesn't</strong> + base verb + …</td>
+            <td>He <span class="hi-verb">doesn't</span> brush his teeth. <em style="color:var(--text2);font-size:0.82rem">(NO doesnt brushes!)</em></td>
+          </tr>
+          <tr>
+            <td>❓ <strong>Question</strong></td>
+            <td><strong>Does</strong> + subject + base verb + …?</td>
+            <td><span class="hi-verb">Does</span> he brush his teeth?</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-title" style="margin-top:20px;font-size:1rem;">⚠️ Errores comunes de hispanohablantes</div>
+    <div class="mistake-box">
+      <span class="wrong">She doesn't eats breakfast.</span> ❌<br>
+      <span class="right">She doesn't eat breakfast.</span> ✅<br>
+      <em style="font-size:0.82rem;color:var(--text2)">Después de "doesn't", el verbo NO lleva -s.</em>
+    </div>
+    <div class="mistake-box">
+      <span class="wrong">Does he goes to school?</span> ❌<br>
+      <span class="right">Does he go to school?</span> ✅<br>
+      <em style="font-size:0.82rem;color:var(--text2)">En preguntas con "Does", el verbo vuelve a su forma base.</em>
+    </div>
+    <div class="mistake-box">
+      <span class="wrong">He study English every day.</span> ❌<br>
+      <span class="right">He studies English every day.</span> ✅<br>
+      <em style="font-size:0.82rem;color:var(--text2)">study termina en consonante + y → cambia a -ies para he/she/it.</em>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 3: READING ═══════════════ -->
+<section id="reading" class="section">
+  <div class="section-intro">
+    ⏱ <strong>Tiempo sugerido: 10 min</strong> — Lee el texto en voz alta primero. Luego pide a los estudiantes que subrayen los verbos en 3ra persona. Finalmente, responden las preguntas en parejas.
+  </div>
+  <div class="card">
+    <div class="card-title">📄 Reading — Carlos's Day</div>
+    <div class="reading-text">
+      <p>
+        This is Carlos. He is 15 years old and he is a student. 
+        Carlos <span class="verb-highlight">wakes up</span> at <span class="time-label">6:30 AM</span> every day. 
+        He <span class="verb-highlight">gets up</span> quickly and <span class="verb-highlight">goes</span> to the bathroom. 
+        Carlos <span class="verb-highlight">brushes</span> his teeth and <span class="verb-highlight">takes</span> a cold shower. 
+        After that, he <span class="verb-highlight">gets dressed</span> and <span class="verb-highlight">has</span> breakfast. 
+        He usually <span class="verb-highlight">eats</span> cereal and <span class="verb-highlight">drinks</span> orange juice.
+      </p>
+      <br>
+      <p>
+        Carlos <span class="verb-highlight">leaves</span> home at <span class="time-label">7:15 AM</span> and <span class="verb-highlight">takes</span> the bus to school. 
+        He <span class="verb-highlight">studies</span> five different subjects. His favorite is English! 
+        At <span class="time-label">12:00 PM</span>, he <span class="verb-highlight">has</span> lunch with his friends in the cafeteria.
+      </p>
+      <br>
+      <p>
+        In the afternoon, Carlos <span class="verb-highlight">does</span> his homework and <span class="verb-highlight">watches</span> videos on his phone. 
+        He <span class="verb-highlight">plays</span> football with his friends from 5 to 6 PM. 
+        In the evening, he <span class="verb-highlight">helps</span> his mom cook dinner. 
+        After dinner, Carlos <span class="verb-highlight">reads</span> for 20 minutes and then <span class="verb-highlight">goes</span> to bed at <span class="time-label">10:00 PM</span>. 
+        He never <span class="verb-highlight">stays</span> up very late on school days.
+      </p>
+    </div>
+    <div style="text-align:right;margin-top:8px;font-size:0.82rem;color:var(--text2)">
+      Los verbos en <strong style="color:var(--blue-d)">azul y subrayados</strong> están en tercera persona (he/she/it) → Present Simple con -s
+    </div>
+
+    <div class="card-title" style="margin-top:20px;">❓ Comprehension Questions</div>
+    <ol class="questions-list">
+      <li>What time does Carlos wake up every day?</li>
+      <li>What does Carlos eat and drink for breakfast?</li>
+      <li>How does Carlos get to school?</li>
+      <li>What does Carlos do from 5 to 6 PM?</li>
+      <li>What time does Carlos go to bed? Does he stay up late on school days?</li>
+    </ol>
+    <div class="teacher-note" style="margin-top:14px;">
+      <strong>👩‍🏫 Extensión:</strong> Pregunta a los estudiantes: "What's different between Carlos's routine and your routine?" — respuestas orales breves en inglés o con ayuda del vocabulario de la sección anterior.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 4: ACTIVITIES ═══════════════ -->
+<section id="activities" class="section">
+  <div class="section-intro">
+    ⏱ <strong>Tiempo sugerido: 15 min</strong> — Las actividades son interactivas. Pueden hacerse en la pizarra digital, en parejas, o individualmente. Revisa cada actividad con la clase antes de pasar a la siguiente.
+  </div>
+
+  <!-- ACT 1: MATCH -->
+  <div class="card">
+    <div class="activity-header">
+      <div class="act-badge act1">1</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;">Vocabulary Match — Une el verbo con su significado</div>
+        <div style="font-size:0.85rem;color:var(--text2)">Haz clic en un verbo (izquierda) y luego en su traducción (derecha)</div>
+      </div>
+    </div>
+    <div class="match-grid">
+      <div class="match-col" id="words-col"></div>
+      <div class="match-col" id="defs-col"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-sm" onclick="checkMatch()">✓ Check</button>
+      <button class="btn btn-sm" style="background:var(--gray-l);color:var(--gray-d)" onclick="resetMatch()">↺ Reset</button>
+    </div>
+    <div id="match-feedback" class="feedback" style="display:none"></div>
+  </div>
+
+  <!-- ACT 2: FILL BLANKS -->
+  <div class="card">
+    <div class="activity-header">
+      <div class="act-badge act2">2</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;">Fill in the Blanks — Completa los espacios</div>
+        <div style="font-size:0.85rem;color:var(--text2)">Usa los verbos del banco. Recuerda: ¡agrega -s, -es, o -ies!</div>
+      </div>
+    </div>
+    <div class="verb-bank">
+      <span class="verb-chip">wake up</span><span class="verb-chip">brush</span><span class="verb-chip">have</span>
+      <span class="verb-chip">go</span><span class="verb-chip">watch</span><span class="verb-chip">study</span>
+      <span class="verb-chip">play</span><span class="verb-chip">get dressed</span>
+    </div>
+    <div id="fill-sentences"></div>
+    <div class="btn-row">
+      <button class="btn btn-teal btn-sm" onclick="checkFill()">✓ Check Answers</button>
+      <button class="btn btn-sm" style="background:var(--gray-l);color:var(--gray-d)" onclick="resetFill()">↺ Reset</button>
+    </div>
+    <div id="fill-score" style="margin-top:10px;font-size:0.88rem;display:none"></div>
+  </div>
+
+  <!-- ACT 3: UNSCRAMBLE -->
+  <div class="card">
+    <div class="activity-header">
+      <div class="act-badge act3">3</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;">Unscramble the Sentences — Ordena las palabras</div>
+        <div style="font-size:0.85rem;color:var(--text2)">Haz clic en las palabras para ordenarlas. Clic en una palabra colocada para removerla.</div>
+      </div>
+    </div>
+    <div id="scramble-container"></div>
+    <div class="btn-row">
+      <button class="btn btn-sm" style="background:var(--coral);color:#fff" onclick="checkScramble()">✓ Check All</button>
+      <button class="btn btn-sm" style="background:var(--gray-l);color:var(--gray-d)" onclick="resetScramble()">↺ Reset All</button>
+    </div>
+    <div id="scramble-feedback" style="margin-top:10px;font-size:0.88rem;display:none;"></div>
+  </div>
+
+  <!-- ACT 4: ERROR CORRECTION -->
+  <div class="card">
+    <div class="activity-header">
+      <div class="act-badge act4">4</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;">Error Correction — Encuentra y corrige el error</div>
+        <div style="font-size:0.85rem;color:var(--text2)">Cada oración tiene UN error. Escribe la versión correcta en el campo.</div>
+      </div>
+    </div>
+    <div id="error-container"></div>
+    <div class="btn-row">
+      <button class="btn btn-sm" style="background:var(--amber);color:#fff" onclick="checkErrors()">✓ Check All</button>
+      <button class="btn btn-sm" style="background:var(--gray-l);color:var(--gray-d)" onclick="resetErrors()">↺ Reset</button>
+    </div>
+    <div id="error-feedback" style="margin-top:10px;font-size:0.88rem;display:none;"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 5: SPEAKING ═══════════════ -->
+<section id="speaking" class="section">
+  <div class="section-intro">
+    ⏱ <strong>Tiempo sugerido: 8 min</strong> — Actividad en parejas. Estudiante A pregunta, Estudiante B responde. Luego intercambian roles. El profesor circula y toma nota de errores para corregir al final.
+  </div>
+  <div class="card">
+    <div class="card-title">🗣 Pair Work — Interview Your Partner / Entrevista a tu compañero</div>
+
+    <div class="card-title" style="font-size:0.95rem;margin-bottom:12px;">Question Cards — Tarjetas de Preguntas</div>
+    <div class="q-cards-grid">
+      <div class="question-card">What time do you wake up on school days?</div>
+      <div class="question-card">What do you eat for breakfast?</div>
+      <div class="question-card">How do you get to school?</div>
+      <div class="question-card">What time do you have lunch?</div>
+      <div class="question-card">What do you do after school?</div>
+      <div class="question-card">Do you do homework every day?</div>
+      <div class="question-card">What do you watch on TV / your phone?</div>
+      <div class="question-card">What time do you go to bed?</div>
+    </div>
+
+    <div class="card-title" style="font-size:0.95rem;margin-top:20px;margin-bottom:12px;">Model Dialogue — Diálogo Modelo</div>
+    <div class="dialogue">
+      <div class="dialogue-line"><span class="speaker speaker-a">A:</span><span>What time do you wake up on school days?</span></div>
+      <div class="dialogue-line"><span class="speaker speaker-b">B:</span><span>I wake up at 6:45. It's very early! What about you?</span></div>
+      <div class="dialogue-line"><span class="speaker speaker-a">A:</span><span>I wake up at 7:00. Do you eat breakfast?</span></div>
+      <div class="dialogue-line"><span class="speaker speaker-b">B:</span><span>Yes, I do. I usually eat toast and drink coffee. Do you?</span></div>
+      <div class="dialogue-line"><span class="speaker speaker-a">A:</span><span>No, I don't. I never eat in the morning!</span></div>
+      <div class="dialogue-line"><span class="speaker speaker-b">B:</span><span>Really? What do you do after school?</span></div>
+      <div class="dialogue-line"><span class="speaker speaker-a">A:</span><span>I usually play video games for one hour. Then I do my homework.</span></div>
+      <div class="dialogue-line"><span class="speaker speaker-b">B:</span><span>Cool! I play football with my friends. I go to bed at 10:30.</span></div>
+    </div>
+
+    <div class="teacher-note">
+      <strong>👩‍🏫 Instrucciones para el profesor:</strong>
+      1. Lee el diálogo con un(a) estudiante como demostración (2 min). 
+      2. Parejas practican con sus propias respuestas (4 min). 
+      3. Pide a 1–2 parejas que compartan con la clase (2 min). Anota en la pizarra errores de -s endings para discutir.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 6: WRITING ═══════════════ -->
+<section id="writing" class="section">
+  <div class="section-intro">
+    ⏱ <strong>Tiempo sugerido: 8 min</strong> — Tarea individual. Los estudiantes escriben sobre SU propia rutina usando los starters como guía. Puede ser tarea para la casa si el tiempo no alcanza.
+  </div>
+  <div class="card">
+    <div class="card-title">✍️ Writing Task — My Daily Routine</div>
+    <p style="font-size:0.92rem;margin-bottom:16px;color:var(--text2)"><strong style="color:var(--text)">Task:</strong> Write 6–8 sentences about your own daily routine. Use the sentence starters below as a guide.</p>
+
+    <div class="card-title" style="font-size:0.95rem;">📝 Sentence Starters — Inicios de Oraciones</div>
+    <ul class="scaffold-list">
+      <li><span>I wake up at ___ every day.</span> <em style="color:var(--text2);font-size:0.85rem">/ I usually wake up early / late.</em></li>
+      <li><span>In the morning, I ___</span> <em style="color:var(--text2);font-size:0.85rem">and then I ___.</em></li>
+      <li><span>I have breakfast at ___ .</span> <em style="color:var(--text2);font-size:0.85rem">/ I don't eat breakfast.</em></li>
+      <li><span>I go to school at ___ .</span> <em style="color:var(--text2);font-size:0.85rem">/ I take the bus / walk.</em></li>
+      <li><span>After school, I always / usually ___</span> <em style="color:var(--text2);font-size:0.85rem">.</em></li>
+      <li><span>In the evening, I ___</span> <em style="color:var(--text2);font-size:0.85rem">and ___.</em></li>
+      <li><span>I go to bed at ___</span> <em style="color:var(--text2);font-size:0.85rem">. I never / sometimes ___.</em></li>
+    </ul>
+
+    <div class="card-title" style="font-size:0.95rem;margin-top:20px;">📋 Your Writing — Tu Redacción</div>
+    <textarea class="student-textarea" placeholder="Write here... / Escribe aquí...&#10;&#10;Example: I wake up at 7:00 every day. In the morning, I brush my teeth and get dressed. I have breakfast at 7:30. I usually eat cereal..."></textarea>
+    <div style="font-size:0.82rem;color:var(--text2);margin-top:6px;">💡 Recuerda: cuando hablas de ti mismo usa la forma base (I wake up). La -s solo es para he/she/it.</div>
+
+    <div class="teacher-note" style="margin-top:14px;">
+      <strong>👩‍🏫 Criterios de evaluación sugeridos:</strong>
+      ✅ Usa al menos 6 verbos de rutina · ✅ Usa adverbios de frecuencia (always, usually, never) · ✅ Aplica correctamente el Present Simple · ✅ Incluye expresiones de tiempo
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 7: EXIT TICKET ═══════════════ -->
+<section id="exit" class="section">
+  <div class="section-intro">
+    ⏱ <strong>Tiempo sugerido: 5 min</strong> — Actividad de cierre individual. Sirve para que el profesor evalúe qué tan bien comprendió el grupo los objetivos de la clase.
+  </div>
+  <div class="card">
+    <div class="card-title">✅ Exit Ticket — ¿Qué aprendiste hoy?</div>
+    <div id="exit-questions"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkExit()">✓ Submit Answers</button>
+      <button class="btn btn-sm" style="background:var(--gray-l);color:var(--gray-d)" onclick="resetExit()">↺ Reset</button>
+    </div>
+    <div id="exit-result" style="display:none;margin-top:16px;"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTION 8: ANSWER KEY ═══════════════ -->
+<section id="keys" class="section">
+  <div class="card">
+    <div class="card-title">🔑 Answer Key — Clave de Respuestas</div>
+
+    <div class="answer-key" style="margin-bottom:16px;">
+      <h4>Activity 1 — Vocabulary Match</h4>
+      <ol>
+        <li>wake up → despertarse</li>
+        <li>brush teeth → cepillarse los dientes</li>
+        <li>get dressed → vestirse</li>
+        <li>have lunch → almorzar</li>
+        <li>do homework → hacer la tarea</li>
+        <li>go to bed → irse a la cama</li>
+      </ol>
+    </div>
+
+    <div class="answer-key" style="margin-bottom:16px;">
+      <h4>Activity 2 — Fill in the Blanks</h4>
+      <ol>
+        <li>Maria <strong>wakes up</strong> at 6 o'clock every morning.</li>
+        <li>He <strong>brushes</strong> his teeth after breakfast.</li>
+        <li>She <strong>has</strong> lunch at school with her friends.</li>
+        <li>Carlos <strong>goes</strong> to bed at 10 PM.</li>
+        <li>My brother <strong>watches</strong> TV in the evening.</li>
+        <li>She <strong>studies</strong> English every Tuesday.</li>
+        <li>He <strong>plays</strong> football on weekends.</li>
+        <li>Laura <strong>gets dressed</strong> after her shower.</li>
+      </ol>
+    </div>
+
+    <div class="answer-key" style="margin-bottom:16px;">
+      <h4>Activity 3 — Unscramble</h4>
+      <ol>
+        <li>She always wakes up at 7 o'clock.</li>
+        <li>He never eats breakfast in the morning.</li>
+        <li>Does she go to school by bus?</li>
+        <li>My sister studies English every day.</li>
+      </ol>
+    </div>
+
+    <div class="answer-key" style="margin-bottom:16px;">
+      <h4>Activity 4 — Error Correction</h4>
+      <ol>
+        <li><del>She don't</del> → She <strong>doesn't</strong> eat breakfast.</li>
+        <li><del>He studys</del> → He <strong>studies</strong> every day.</li>
+        <li><del>Does she goes</del> → Does she <strong>go</strong> to school?</li>
+        <li><del>I wakes up</del> → I <strong>wake up</strong> at 7:00.</li>
+      </ol>
+    </div>
+
+    <div class="answer-key" style="margin-bottom:16px;">
+      <h4>Reading — Comprehension Answers</h4>
+      <ol>
+        <li>Carlos wakes up at 6:30 AM.</li>
+        <li>He eats cereal and drinks orange juice.</li>
+        <li>He takes the bus.</li>
+        <li>He plays football with his friends.</li>
+        <li>He goes to bed at 10:00 PM. No, he doesn't stay up late on school days.</li>
+      </ol>
+    </div>
+
+    <div class="answer-key">
+      <h4>Exit Ticket</h4>
+      <ol>
+        <li>She <strong>brushes</strong> her teeth. (+ es rule: sh/ch → +es)</li>
+        <li>He <strong>doesn't</strong> eat lunch. (negative = doesn't + base verb)</li>
+        <li><strong>Does</strong> he wake up early? (question = Does + subject + base verb)</li>
+      </ol>
+    </div>
+
+    <div class="teacher-note" style="margin-top:16px;">
+      <strong>👩‍🏫 Objetivos de aprendizaje de esta clase:</strong>
+      ✅ Vocabulario de 15 verbos de rutina diaria · ✅ Reglas de -s endings (3ra persona) · ✅ Afirmativo / Negativo / Pregunta en Present Simple · ✅ Producción oral: preguntar y responder sobre rutinas · ✅ Producción escrita: describir la propia rutina
+    </div>
+  </div>
+</section>
+
+<script>
+// ───────── DATA ─────────
+const vocabData = [
+  { base:'wake up', third:'wakes up', es:'despertarse', rule:'s', example:'She wakes up at 6:30 AM.', tip:'Pronunciación: /weɪks/' },
+  { base:'get up', third:'gets up', es:'levantarse', rule:'s', example:'He gets up and makes his bed.', tip:'Get up = moverse de la cama' },
+  { base:'brush teeth', third:'brushes teeth', es:'cepillarse los dientes', rule:'es', example:'She brushes her teeth twice a day.', tip:'brush → +es (termina en sh)' },
+  { base:'take a shower', third:'takes a shower', es:'ducharse', rule:'s', example:'He takes a cold shower every morning.', tip:'/teɪks/' },
+  { base:'get dressed', third:'gets dressed', es:'vestirse', rule:'s', example:'She gets dressed quickly.', tip:'dressed = ya vestido/a' },
+  { base:'have breakfast', third:'has breakfast', es:'desayunar', rule:'irreg', example:'He has breakfast at 7:00.', tip:'have → has (¡irregular!)' },
+  { base:'go to school', third:'goes to school', es:'ir al colegio', rule:'es', example:'She goes to school by bus.', tip:'go → goes (+es, termina en o)' },
+  { base:'eat lunch', third:'eats lunch', es:'almorzar', rule:'s', example:'He eats lunch at noon.', tip:'/iːts/' },
+  { base:'drink', third:'drinks', es:'tomar / beber', rule:'s', example:'She drinks orange juice every day.', tip:'/drɪŋks/' },
+  { base:'study', third:'studies', es:'estudiar', rule:'ies', example:'He studies English and Math.', tip:'y → ies (consonante + y)' },
+  { base:'do homework', third:'does homework', es:'hacer la tarea', rule:'irreg', example:'She does homework after school.', tip:'do → does (¡irregular!)' },
+  { base:'watch TV', third:'watches TV', es:'ver televisión', rule:'es', example:'He watches TV in the evening.', tip:'watch → +es (termina en ch)' },
+  { base:'play sports', third:'plays sports', es:'hacer deporte / jugar', rule:'s', example:'She plays football on weekends.', tip:'play → +s (vocal + y)' },
+  { base:'help at home', third:'helps at home', es:'ayudar en casa', rule:'s', example:'He helps his mom cook dinner.', tip:'/hɛlps/' },
+  { base:'go to bed', third:'goes to bed', es:'irse a dormir', rule:'es', example:'She goes to bed at 10 PM.', tip:'go → goes (+es)' },
+];
+
+const ruleClass = { s:'rule-s', es:'rule-es', ies:'rule-ies', irreg:'rule-es' };
+const ruleLabel = { s:'+ s', es:'+ es', ies:'y → ies', irreg:'irregular' };
+
+// Build vocab grid
+const grid = document.getElementById('vocab-grid');
+vocabData.forEach(v => {
+  const card = document.createElement('div');
+  card.className = 'vocab-card';
+  card.innerHTML = `
+    <div class="verb-en">${v.base}</div>
+    <div class="verb-3rd">→ ${v.third} <span class="rule-tag ${ruleClass[v.rule]}">${ruleLabel[v.rule]}</span></div>
+    <div class="verb-es">${v.es}</div>
+    <div class="example">${v.example}</div>
+    <span class="tip">🔊 ${v.tip}</span>
+  `;
+  grid.appendChild(card);
+});
+
+// ───────── NAV ─────────
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ───────── ACTIVITY 1: MATCH ─────────
+const matchPairs = [
+  {word:'wake up', def:'despertarse'},
+  {word:'brush teeth', def:'cepillarse los dientes'},
+  {word:'get dressed', def:'vestirse'},
+  {word:'have lunch', def:'almorzar'},
+  {word:'do homework', def:'hacer la tarea'},
+  {word:'go to bed', def:'irse a la cama'},
+];
+let selectedWord = null, selectedDef = null, matchAnswers = {};
+
+function buildMatch() {
+  const wc = document.getElementById('words-col');
+  const dc = document.getElementById('defs-col');
+  wc.innerHTML=''; dc.innerHTML='';
+  const shuffledDefs = [...matchPairs].sort(()=>Math.random()-0.5);
+  matchPairs.forEach(p => {
+    const w = document.createElement('div');
+    w.className='match-item'; w.textContent=p.word; w.dataset.word=p.word;
+    w.onclick=()=>selectWord(w);
+    wc.appendChild(w);
+  });
+  shuffledDefs.forEach(p => {
+    const d = document.createElement('div');
+    d.className='match-item'; d.textContent=p.def; d.dataset.def=p.def;
+    d.onclick=()=>selectDef(d);
+    dc.appendChild(d);
+  });
+  matchAnswers={};
+}
+function selectWord(el) {
+  if(el.classList.contains('correct')||el.classList.contains('disabled')) return;
+  document.querySelectorAll('#words-col .match-item').forEach(e=>e.classList.remove('selected-word'));
+  el.classList.add('selected-word'); selectedWord=el;
+  if(selectedDef) tryMatch();
+}
+function selectDef(el) {
+  if(el.classList.contains('correct')||el.classList.contains('disabled')) return;
+  document.querySelectorAll('#defs-col .match-item').forEach(e=>e.classList.remove('selected-def'));
+  el.classList.add('selected-def'); selectedDef=el;
+  if(selectedWord) tryMatch();
+}
+function tryMatch() {
+  const pair = matchPairs.find(p=>p.word===selectedWord.dataset.word);
+  if(pair.def===selectedDef.dataset.def) {
+    selectedWord.classList.add('correct'); selectedDef.classList.add('correct');
+    selectedWord.classList.remove('selected-word'); selectedDef.classList.remove('selected-def');
+  } else {
+    selectedWord.classList.add('wrong'); selectedDef.classList.add('wrong');
+    setTimeout(()=>{ selectedWord.classList.remove('wrong','selected-word'); selectedDef.classList.remove('wrong','selected-def'); selectedWord=null; selectedDef=null; },600);
+    return;
+  }
+  selectedWord=null; selectedDef=null;
+}
+function checkMatch() {
+  const correct = document.querySelectorAll('#words-col .correct').length;
+  const fb=document.getElementById('match-feedback');
+  fb.style.display='block';
+  fb.className='feedback '+(correct===matchPairs.length?'ok':'err');
+  fb.textContent = correct===matchPairs.length ? '🎉 Perfect! All matches correct!' : `${correct}/${matchPairs.length} correct. Keep trying!`;
+}
+function resetMatch() { selectedWord=null;selectedDef=null; buildMatch(); document.getElementById('match-feedback').style.display='none'; }
+buildMatch();
+
+// ───────── ACTIVITY 2: FILL BLANKS ─────────
+const fillSentences = [
+  { text:'Maria ___ at 6 o\'clock every morning.', ans:'wakes up', hint:'wake up' },
+  { text:'He ___ his teeth after breakfast.', ans:'brushes', hint:'brush' },
+  { text:'She ___ lunch at school with her friends.', ans:'has', hint:'have' },
+  { text:'Carlos ___ to bed at 10 PM.', ans:'goes', hint:'go' },
+  { text:'My brother ___ TV in the evening.', ans:'watches', hint:'watch' },
+  { text:'She ___ English every Tuesday.', ans:'studies', hint:'study' },
+  { text:'He ___ football on weekends.', ans:'plays', hint:'play' },
+  { text:'Laura ___ after her shower.', ans:'gets dressed', hint:'get dressed' },
+];
+
+function buildFill() {
+  const cont = document.getElementById('fill-sentences');
+  cont.innerHTML = '';
+  fillSentences.forEach((s,i) => {
+    const div = document.createElement('div');
+    div.className = 'fill-sentence';
+    div.innerHTML = s.text.replace('___', `<input class="blank-input" id="fill-${i}" type="text" placeholder="${s.hint}...">`);
+    cont.appendChild(div);
+  });
+}
+function checkFill() {
+  let correct=0;
+  fillSentences.forEach((s,i) => {
+    const inp = document.getElementById(`fill-${i}`);
+    const val = inp.value.trim().toLowerCase();
+    if(val===s.ans.toLowerCase()) { inp.classList.add('correct'); inp.classList.remove('wrong'); correct++; }
+    else { inp.classList.add('wrong'); inp.classList.remove('correct'); }
+  });
+  const score = document.getElementById('fill-score');
+  score.style.display='block';
+  score.innerHTML = `<span class="feedback ${correct===fillSentences.length?'ok':'err'}" style="display:block">${correct===fillSentences.length?'🎉 Excellent! All correct!':'Score: '+correct+'/'+fillSentences.length+' — Check the wrong ones!'}</span>`;
+}
+function resetFill() { buildFill(); document.getElementById('fill-score').style.display='none'; }
+buildFill();
+
+// ───────── ACTIVITY 3: UNSCRAMBLE ─────────
+const scrambleSentences = [
+  { words:['She','always','wakes','up','at','7','o\'clock','.'], ans:'She always wakes up at 7 o\'clock .' },
+  { words:['He','never','eats','breakfast','in','the','morning','.'], ans:'He never eats breakfast in the morning .' },
+  { words:['Does','she','go','to','school','by','bus','?'], ans:'Does she go to school by bus ?' },
+  { words:['My','sister','studies','English','every','day','.'], ans:'My sister studies English every day .' },
+];
+const scrambleState = scrambleSentences.map(s=>({placed:[],remaining:[...s.words].sort(()=>Math.random()-0.5)}));
+
+function buildScramble() {
+  const cont = document.getElementById('scramble-container');
+  cont.innerHTML='';
+  scrambleSentences.forEach((s,i) => {
+    const div = document.createElement('div'); div.style.marginBottom='20px';
+    const label = document.createElement('div'); label.style='font-size:0.85rem;color:var(--text2);margin-bottom:6px;font-weight:600;';
+    label.textContent = `Sentence ${i+1}:`;
+    const wordsDiv = document.createElement('div'); wordsDiv.className='scramble-words'; wordsDiv.id=`words-${i}`;
+    const ansDiv = document.createElement('div'); ansDiv.className='answer-zone'; ansDiv.id=`zone-${i}`;
+    ansDiv.dataset.idx=i;
+    renderScramble(i, wordsDiv, ansDiv);
+    div.appendChild(label); div.appendChild(wordsDiv); div.appendChild(ansDiv);
+    cont.appendChild(div);
+  });
+}
+function renderScramble(i, wordsDiv, ansDiv) {
+  if(!wordsDiv) wordsDiv = document.getElementById(`words-${i}`);
+  if(!ansDiv) ansDiv = document.getElementById(`zone-${i}`);
+  wordsDiv.innerHTML=''; ansDiv.innerHTML='';
+  scrambleSentences[i].words.forEach((w,wi) => {
+    const chip = document.createElement('span'); chip.className='word-chip';
+    chip.textContent=w; chip.dataset.word=w; chip.dataset.wi=wi;
+    const used = scrambleState[i].placed.some(p=>p.wi===wi);
+    if(used) chip.classList.add('used');
+    chip.onclick=()=>{ if(!chip.classList.contains('used')){ chip.classList.add('used'); scrambleState[i].placed.push({wi,w}); renderPlaced(i); }};
+    wordsDiv.appendChild(chip);
+  });
+}
+function renderPlaced(i) {
+  const ansDiv = document.getElementById(`zone-${i}`);
+  ansDiv.innerHTML='';
+  scrambleState[i].placed.forEach((p,pi) => {
+    const pw = document.createElement('span'); pw.className='placed-word'; pw.textContent=p.w;
+    pw.onclick=()=>{ scrambleState[i].placed.splice(pi,1); renderScramble(i); renderPlaced(i); };
+    ansDiv.appendChild(pw);
+  });
+}
+function checkScramble() {
+  let correct=0;
+  scrambleSentences.forEach((s,i) => {
+    const placed = scrambleState[i].placed.map(p=>p.w).join(' ');
+    const zone = document.getElementById(`zone-${i}`);
+    if(placed===s.ans) { zone.style.background='var(--teal-l)'; zone.style.borderColor='var(--teal)'; correct++; }
+    else { zone.style.background='#FCEBEB'; zone.style.borderColor='#E24B4A'; }
+  });
+  const fb = document.getElementById('scramble-feedback');
+  fb.style.display='block';
+  fb.innerHTML=`<span class="feedback ${correct===scrambleSentences.length?'ok':'err'}" style="display:block">${correct===scrambleSentences.length?'🎉 All correct!':'Score: '+correct+'/'+scrambleSentences.length}</span>`;
+}
+function resetScramble() {
+  scrambleSentences.forEach((s,i)=>{ scrambleState[i]={placed:[],remaining:[...s.words].sort(()=>Math.random()-0.5)}; });
+  buildScramble();
+  document.getElementById('scramble-feedback').style.display='none';
+}
+buildScramble();
+
+// ───────── ACTIVITY 4: ERRORS ─────────
+const errorSentences = [
+  { wrong:'She don\'t eat breakfast every morning.', correct:"She doesn't eat breakfast every morning.", hint:'don\'t → doesn\'t (she)' },
+  { wrong:'He studys English every day.', correct:'He studies English every day.', hint:'studys → studies (y → ies)' },
+  { wrong:'Does she goes to school by bus?', correct:'Does she go to school by bus?', hint:'goes → go (después de Does)' },
+  { wrong:'I wakes up at 7:00 every morning.', correct:'I wake up at 7:00 every morning.', hint:'wakes → wake (I no lleva -s)' },
+];
+function buildErrors() {
+  const cont = document.getElementById('error-container');
+  cont.innerHTML='';
+  errorSentences.forEach((s,i) => {
+    const div = document.createElement('div');
+    div.className='error-sentence';
+    div.innerHTML=`<div>❌ <strong>${s.wrong}</strong></div><div style="font-size:0.8rem;color:var(--text2);margin-top:4px;">Hint: ${s.hint}</div><input class="error-input" id="err-${i}" type="text" placeholder="Write the correct sentence...">`;
+    cont.appendChild(div);
+  });
+}
+function checkErrors() {
+  let correct=0;
+  errorSentences.forEach((s,i) => {
+    const inp = document.getElementById(`err-${i}`);
+    if(inp.value.trim().toLowerCase()===s.correct.toLowerCase()) { inp.classList.add('correct'); correct++; }
+    else { inp.classList.add('wrong'); inp.classList.remove('correct'); }
+  });
+  const fb=document.getElementById('error-feedback');
+  fb.style.display='block';
+  fb.innerHTML=`<span class="feedback ${correct===errorSentences.length?'ok':'err'}" style="display:block">${correct===errorSentences.length?'🎉 All correct!':'Score: '+correct+'/'+errorSentences.length+' — Check the Answer Key for the correct sentences.'}</span>`;
+}
+function resetErrors() { buildErrors(); document.getElementById('error-feedback').style.display='none'; }
+buildErrors();
+
+// ───────── EXIT TICKET ─────────
+const exitQuestions = [
+  {
+    q:'1. Which sentence is correct?',
+    opts:['She brush her teeth every day.', 'She brushes her teeth every day.', 'She brushed her teeth every day.', 'She is brush her teeth.'],
+    ans:1
+  },
+  {
+    q:'2. Complete: He ___ eat lunch at school.',
+    opts:["don't", "doesn't", "isn't", "no"],
+    ans:1
+  },
+  {
+    q:'3. Make a question: ___ he wake up early?',
+    opts:['Is', 'Do', 'Does', 'Has'],
+    ans:2
+  },
+];
+let exitSelected = {};
+function buildExit() {
+  const cont = document.getElementById('exit-questions'); cont.innerHTML='';
+  exitQuestions.forEach((q,i) => {
+    const div = document.createElement('div'); div.className='ticket-q';
+    div.innerHTML=`<p>${q.q}</p>`;
+    const grid = document.createElement('div'); grid.className='options-grid';
+    q.opts.forEach((opt,oi) => {
+      const btn = document.createElement('button'); btn.className='opt-btn';
+      btn.textContent=opt; btn.onclick=()=>selectExit(i,oi,btn);
+      grid.appendChild(btn);
+    });
+    div.appendChild(grid); cont.appendChild(div);
+  });
+}
+function selectExit(qi,oi,btn) {
+  const btns = btn.parentNode.querySelectorAll('.opt-btn');
+  btns.forEach(b=>b.classList.remove('correct','wrong'));
+  exitSelected[qi]=oi;
+  btn.style.borderColor='var(--purple)'; btn.style.background='var(--purple-l)';
+}
+function checkExit() {
+  let correct=0;
+  exitQuestions.forEach((q,i) => {
+    const btns = document.getElementById('exit-questions').querySelectorAll('.ticket-q')[i].querySelectorAll('.opt-btn');
+    btns.forEach((b,oi)=>{ b.style.background=''; b.style.borderColor=''; });
+    if(exitSelected[i]!==undefined) {
+      btns[exitSelected[i]].classList.add(exitSelected[i]===q.ans?'correct':'wrong');
+    }
+    btns[q.ans].classList.add('correct');
+    if(exitSelected[i]===q.ans) correct++;
+  });
+  const res = document.getElementById('exit-result'); res.style.display='block';
+  let msg='', cls='';
+  if(correct===3) { msg='🏆 Excellent! 3/3 — You got it all!'; cls='ok'; }
+  else if(correct===2) { msg='👍 Good! 2/3 — Almost there!'; cls='ok'; }
+  else { msg='💪 Keep practicing! Check the Answer Key section.'; cls='err'; }
+  res.innerHTML=`<div class="feedback ${cls}">${msg}</div>`;
+}
+function resetExit() { exitSelected={}; buildExit(); document.getElementById('exit-result').style.display='none'; }
+buildExit();
+</script>
+</body>
+</html>
