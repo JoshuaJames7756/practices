@@ -14,8 +14,173 @@ body {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 14px;
   overflow-x: hidden;
-  /* Evita el zoom al tocar inputs en iOS */
   -webkit-text-size-adjust: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ══════════════════════════════════════════
+   LOGIN OVERLAY
+══════════════════════════════════════════ */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: #03060a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.login-overlay.hidden {
+  display: none;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 380px;
+  background: #08101a;
+  border: 1px solid #162030;
+  border-radius: 12px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Logo ECG animado */
+.login-logo {
+  width: 120px;
+  margin-bottom: 20px;
+  opacity: .85;
+  filter: drop-shadow(0 0 8px rgba(0,230,118,.4));
+}
+
+.login-logo svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.login-title {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #00e676;
+  letter-spacing: 2px;
+  text-shadow: 0 0 18px rgba(0,230,118,.45);
+  margin-bottom: 6px;
+}
+
+.login-sub {
+  font-size: 10.5px;
+  color: #3a5870;
+  letter-spacing: .5px;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.login-lbl {
+  display: block;
+  font-size: 10px;
+  color: #3a5870;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 7px;
+}
+
+.login-input {
+  width: 100%;
+  background: #030810;
+  border: 1px solid #1a2c3e;
+  border-radius: 6px;
+  padding: 11px 14px;
+  font-size: 15px;
+  color: #d8e8f4;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 3px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  -webkit-text-size-adjust: 100%;
+}
+
+.login-input:focus {
+  border-color: #00e676;
+  box-shadow: 0 0 14px rgba(0,230,118,.18);
+}
+
+.login-input.error {
+  border-color: #ff5252;
+  box-shadow: 0 0 14px rgba(255,82,82,.18);
+}
+
+.login-error {
+  font-size: 11px;
+  color: #ff5252;
+  margin-top: 6px;
+  display: none;
+}
+
+.login-error.visible {
+  display: block;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 13px;
+  background: rgba(0,230,118,.08);
+  border: 1px solid #00e676;
+  border-radius: 6px;
+  color: #00e676;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  transition: all .15s;
+  margin-bottom: 20px;
+}
+
+.login-btn:hover {
+  background: rgba(0,230,118,.18);
+  box-shadow: 0 0 20px rgba(0,230,118,.3);
+}
+
+.login-btn:active {
+  background: rgba(0,230,118,.25);
+}
+
+.login-footer {
+  font-size: 11px;
+  color: #2e4258;
+  text-align: center;
+}
+
+.login-contact {
+  color: #00e676;
+  opacity: .7;
+  cursor: pointer;
+}
+
+/* ══════════════════════════════════════════
+   APP PRINCIPAL
+══════════════════════════════════════════ */
+.app-wrap {
+  display: none; /* oculto hasta que haga login */
+}
+
+.app-wrap.visible {
+  display: block;
 }
 
 /* ── HEADER ─────────────────────────────── */
@@ -29,6 +194,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
+  gap: 10px;
 }
 
 .hdr-title {
@@ -36,6 +202,7 @@ body {
   color: #5a7a9a;
   letter-spacing: .8px;
   text-transform: uppercase;
+  flex: 1;
 }
 
 .hdr-title strong {
@@ -47,6 +214,21 @@ body {
 .hdr-sub {
   font-size: 10.5px;
   color: #3a5870;
+}
+
+/* Botón cerrar sesión */
+.btn-logout {
+  font-size: 16px;
+  color: #2e4258;
+  background: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color .2s;
+  flex-shrink: 0;
+}
+
+.btn-logout:hover {
+  color: #ff5252;
 }
 
 /* ── MONITOR CANVAS ─────────────────────── */
@@ -168,14 +350,6 @@ body {
   flex-wrap: wrap;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  /* Elimina el resaltado azul al tocar en móvil */
-  -webkit-tap-highlight-color: transparent;
-}
-
 .btn-play {
   width: 46px;
   height: 46px;
@@ -282,13 +456,8 @@ button {
   transition: all .13s;
 }
 
-.btn-r:hover {
-  filter: brightness(1.35);
-}
-
-.btn-r.sel {
-  filter: brightness(1.15);
-}
+.btn-r:hover { filter: brightness(1.35); }
+.btn-r.sel   { filter: brightness(1.15); }
 
 /* ── INFO PANEL ─────────────────────────── */
 .info-sect {
@@ -327,9 +496,7 @@ button {
   font-family: 'Courier New', monospace;
 }
 
-.feat-list {
-  list-style: none;
-}
+.feat-list { list-style: none; }
 
 .feat-list li {
   font-size: 12.5px;
@@ -386,179 +553,46 @@ button {
    RESPONSIVE — TABLET (max 768px)
 ══════════════════════════════════════════ */
 @media (max-width: 768px) {
-
-  /* Header más compacto */
-  .hdr {
-    padding: 8px 12px;
-  }
-
-  .hdr-title {
-    font-size: 10.5px;
-  }
-
-  /* Número de FC más pequeño */
-  .hr-big {
-    font-size: 48px;
-  }
-
-  /* Controles en columna */
-  .ctrl-bar {
-    padding: 8px 12px;
-    gap: 8px;
-  }
-
-  /* Separadores ocultos en tablet */
-  .ctrl-sep {
-    display: none;
-  }
-
-  /* Botones de velocidad y ganancia más grandes para el dedo */
-  .btn-s {
-    padding: 7px 13px;
-    font-size: 13px;
-  }
-
-  /* Botón play más grande */
-  .btn-play {
-    width: 50px;
-    height: 50px;
-    font-size: 22px;
-  }
-
-  /* Info en una sola columna */
-  .info-sect {
-    grid-template-columns: 1fr;
-    padding: 10px 12px 16px;
-    gap: 10px;
-  }
-
-  /* Selector de ritmos */
-  .sel-sect {
-    padding: 10px 12px;
-  }
-
-  .btn-r {
-    padding: 7px 13px;
-    font-size: 13px;
-  }
+  .hdr { padding: 8px 12px; }
+  .hdr-title { font-size: 10.5px; }
+  .hr-big { font-size: 48px; }
+  .ctrl-bar { padding: 8px 12px; gap: 8px; }
+  .ctrl-sep { display: none; }
+  .btn-s { padding: 7px 13px; font-size: 13px; }
+  .btn-play { width: 50px; height: 50px; font-size: 22px; }
+  .info-sect { grid-template-columns: 1fr; padding: 10px 12px 16px; gap: 10px; }
+  .sel-sect { padding: 10px 12px; }
+  .btn-r { padding: 7px 13px; font-size: 13px; }
+  .login-box { padding: 28px 22px; }
 }
 
 /* ══════════════════════════════════════════
    RESPONSIVE — MÓVIL (max 480px)
 ══════════════════════════════════════════ */
 @media (max-width: 480px) {
-
-  /* Ocultar subtítulo del header */
-  .hdr-sub {
-    display: none;
-  }
-
-  /* Ocultar etiquetas de categoría */
-  .cat-lbl {
-    display: none;
-  }
-
-  /* Ocultar el texto de ayuda de teclado en móvil */
-  .kb-hint {
-    display: none;
-  }
-
-  /* Ocultar el texto "Selecciona un ritmo ↓" */
-  .ctrl-right {
-    display: none;
-  }
-
-  /* FC más pequeña para que entre bien */
-  .hr-big {
-    font-size: 38px;
-  }
-
-  .hr-unit {
-    font-size: 10px;
-  }
-
-  .rhythm-chip {
-    font-size: 10px;
-    padding: 2px 7px;
-  }
-
-  /* Header compacto */
-  .hdr {
-    padding: 6px 10px;
-  }
-
-  .hdr-title {
-    font-size: 10px;
-  }
-
-  .hdr-title strong {
-    font-size: 12px;
-  }
-
-  /* Controles más compactos */
-  .ctrl-bar {
-    padding: 6px 10px;
-    gap: 6px;
-  }
-
-  .ctrl-lbl {
-    font-size: 9px;
-  }
-
-  /* Botones más grandes para el dedo (mínimo 44px alto) */
-  .btn-s {
-    padding: 8px 10px;
-    font-size: 12px;
-    min-height: 36px;
-  }
-
-  /* Botón play táctil */
-  .btn-play {
-    width: 44px;
-    height: 44px;
-    font-size: 20px;
-  }
-
-  /* Ritmos — botones más grandes y cómodos */
-  .btn-r {
-    padding: 8px 12px;
-    font-size: 12px;
-    min-height: 36px;
-  }
-
-  /* Selector más compacto */
-  .sel-sect {
-    padding: 8px 10px;
-  }
-
-  .sect-hdr {
-    font-size: 9px;
-  }
-
-  /* Cards de info más compactas */
-  .info-card {
-    padding: 10px;
-  }
-
-  .diag-name {
-    font-size: 15px;
-  }
-
-  .diag-hr {
-    font-size: 11px;
-  }
-
-  .feat-list li {
-    font-size: 12px;
-    padding: 5px 0;
-  }
-
-  .guyton-txt {
-    font-size: 12px;
-    line-height: 1.6;
-  }
-
-  .info-sect {
-    padding: 8px 10px 14px;
-  }
+  .hdr-sub { display: none; }
+  .cat-lbl { display: none; }
+  .kb-hint { display: none; }
+  .ctrl-right { display: none; }
+  .hr-big { font-size: 38px; }
+  .hr-unit { font-size: 10px; }
+  .rhythm-chip { font-size: 10px; padding: 2px 7px; }
+  .hdr { padding: 6px 10px; }
+  .hdr-title { font-size: 10px; }
+  .hdr-title strong { font-size: 12px; }
+  .ctrl-bar { padding: 6px 10px; gap: 6px; }
+  .ctrl-lbl { font-size: 9px; }
+  .btn-s { padding: 8px 10px; font-size: 12px; min-height: 36px; }
+  .btn-play { width: 44px; height: 44px; font-size: 20px; }
+  .btn-r { padding: 8px 12px; font-size: 12px; min-height: 36px; }
+  .sel-sect { padding: 8px 10px; }
+  .sect-hdr { font-size: 9px; }
+  .info-card { padding: 10px; }
+  .diag-name { font-size: 15px; }
+  .feat-list li { font-size: 12px; padding: 5px 0; }
+  .guyton-txt { font-size: 12px; line-height: 1.6; }
+  .info-sect { padding: 8px 10px 14px; }
+  .login-box { padding: 24px 18px; }
+  .login-title { font-size: 15px; }
+  .login-logo { width: 90px; }
 }
