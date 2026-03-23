@@ -8,7 +8,6 @@
 <style>
   :root {
     --cyan: #00c8ff;
-    --cyan-dim: rgba(0,200,255,0.12);
     --bg: #07090f;
     --card: rgba(255,255,255,0.04);
     --border: rgba(0,200,255,0.15);
@@ -16,362 +15,116 @@
     --dim: rgba(255,255,255,0.5);
     --dimmer: rgba(255,255,255,0.25);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Grid bg */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,200,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,200,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Glows */
-  body::after {
-    content: '';
-    position: fixed;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,255,0.12) 0%, transparent 70%);
-    top: -150px; right: -150px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 60px 28px 100px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── Header ── */
-  header {
-    padding: 52px 44px;
-    background: rgba(0,0,0,0.5);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    margin-bottom: 48px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,200,255,0.07), transparent 60%);
-  }
-
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 16px var(--cyan);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%,100% { box-shadow: 0 0 16px var(--cyan); }
-    50% { box-shadow: 0 0 30px var(--cyan), 0 0 50px rgba(0,200,255,0.3); }
-  }
-
-  .tag span {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--cyan);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(52px, 9vw, 82px);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -3px;
-    margin-bottom: 14px;
-  }
-
+  body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,200,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.04) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+  body::after { content: ''; position: fixed; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,180,255,0.12) 0%, transparent 70%); top: -150px; right: -150px; pointer-events: none; z-index: 0; }
+  .container { max-width: 880px; margin: 0 auto; padding: 60px 28px 100px; position: relative; z-index: 1; }
+  header { padding: 52px 44px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 24px; margin-bottom: 48px; position: relative; overflow: hidden; }
+  header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,200,255,0.07), transparent 60%); }
+  .tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 16px var(--cyan); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 16px var(--cyan); } 50% { box-shadow: 0 0 30px var(--cyan), 0 0 50px rgba(0,200,255,0.3); } }
+  .tag span { font-size: 13px; font-weight: 500; color: var(--cyan); letter-spacing: 4px; text-transform: uppercase; }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(52px, 9vw, 82px); font-weight: 800; line-height: 0.95; letter-spacing: -3px; margin-bottom: 14px; position: relative; }
   h1 span { color: var(--cyan); }
-
-  .subtitle {
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--dim);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* ── Section ── */
+  .subtitle { font-size: 16px; font-weight: 300; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; position: relative; }
   section { margin-bottom: 44px; }
-
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'Syne', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--cyan);
-    margin-bottom: 20px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-    letter-spacing: 0.5px;
-  }
-
-  /* ── Service cards ── */
-  .service-card {
-    display: flex;
-    gap: 22px;
-    align-items: flex-start;
-    padding: 28px 30px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    margin-bottom: 14px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, background 0.3s;
-  }
-
-  .service-card:hover {
-    border-color: rgba(0,200,255,0.35);
-    background: rgba(0,200,255,0.06);
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px; height: 100%;
-    background: linear-gradient(180deg, var(--cyan), #7850ff);
-    border-radius: 4px 0 0 4px;
-  }
-
+  .section-title { display: flex; align-items: center; gap: 12px; font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--cyan); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .service-card { display: flex; gap: 22px; align-items: flex-start; padding: 28px 30px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 14px; position: relative; overflow: hidden; transition: border-color 0.3s, background 0.3s; }
+  .service-card:hover { border-color: rgba(0,200,255,0.35); background: rgba(0,200,255,0.06); }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--cyan), #7850ff); border-radius: 4px 0 0 4px; }
   .service-emoji { font-size: 36px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
-
-  .service-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-
+  .service-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
   .service-desc { font-size: 15px; color: var(--dim); font-weight: 300; line-height: 1.6; }
-
-  /* ── Table ── */
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-
-  .data-table th {
-    background: rgba(0,200,255,0.1);
-    color: var(--cyan);
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 14px 18px;
-    text-align: left;
-    border: 1px solid var(--border);
-  }
-
-  .data-table td {
-    padding: 13px 18px;
-    border: 1px solid rgba(255,255,255,0.06);
-    color: var(--dim);
-    font-weight: 400;
-    line-height: 1.5;
-    vertical-align: top;
-  }
-
-  .data-table td:first-child {
-    color: var(--white);
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
+  .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .data-table th { background: rgba(0,200,255,0.1); color: var(--cyan); font-family: 'Syne', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; padding: 14px 18px; text-align: left; border: 1px solid var(--border); }
+  .data-table td { padding: 13px 18px; border: 1px solid rgba(255,255,255,0.06); color: var(--dim); font-weight: 400; line-height: 1.5; vertical-align: top; }
+  .data-table td:first-child { color: var(--white); font-weight: 500; }
   .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
   .data-table tr:hover td { background: rgba(0,200,255,0.04); }
-
-  /* ── Checks ── */
   .check-list { display: flex; flex-direction: column; gap: 12px; }
-
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 20px;
-    background: var(--card);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px;
-    font-size: 15px;
-    color: var(--dim);
-  }
-
-  .check-icon {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: rgba(0,200,255,0.12);
-    border: 1.5px solid rgba(0,200,255,0.4);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; color: var(--cyan); font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  /* ── CTA ── */
-  .cta {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    padding: 36px 40px;
-    background: linear-gradient(135deg, rgba(0,200,255,0.1), rgba(120,80,255,0.07));
-    border: 1px solid rgba(0,200,255,0.25);
-    border-radius: 20px;
-    margin-top: 44px;
-  }
-
+  .check-item { display: flex; align-items: center; gap: 14px; padding: 14px 20px; background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 15px; color: var(--dim); }
+  .check-icon { width: 26px; height: 26px; border-radius: 50%; background: rgba(0,200,255,0.12); border: 1.5px solid rgba(0,200,255,0.4); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--cyan); font-weight: 700; flex-shrink: 0; }
+  .cta { display: flex; align-items: center; gap: 22px; padding: 36px 40px; background: linear-gradient(135deg, rgba(0,200,255,0.1), rgba(120,80,255,0.07)); border: 1px solid rgba(0,200,255,0.25); border-radius: 20px; margin-top: 44px; }
   .cta-emoji { font-size: 44px; flex-shrink: 0; }
-
-  .cta-main {
-    font-family: 'Syne', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
-
+  .cta-main { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
   .cta-sub { font-size: 15px; color: var(--dim); font-weight: 300; }
-
-  /* ── Footer ── */
-  footer {
-    text-align: center;
-    margin-top: 60px;
-    font-size: 13px;
-    color: var(--dimmer);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
+  .cta-phone { margin-top: 10px; font-size: 15px; color: var(--white); font-weight: 500; display: flex; align-items: center; gap: 10px; }
+  .wa-icon { width: 22px; height: 22px; border-radius: 50%; background: #25D366; color: #0b120d; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  footer { text-align: center; margin-top: 60px; font-size: 13px; color: var(--dimmer); letter-spacing: 2px; text-transform: uppercase; }
 </style>
 </head>
 <body>
 <div class="container">
 
   <header>
-    <div class="tag">
-      <div class="dot"></div>
-      <span>Servicios Digitales</span>
-    </div>
+    <div class="tag"><div class="dot"></div><span>Servicios Digitales</span></div>
     <h1>JV<span>Software</span></h1>
     <p class="subtitle">Soluciones web a tu medida</p>
   </header>
 
-  <!-- Servicios -->
   <section>
     <div class="section-title">🛠 Servicios que ofrezco</div>
-
     <div class="service-card">
       <div class="service-emoji">🌐</div>
       <div>
-        <div class="service-title">Páginas Web Estáticas</div>
-        <div class="service-desc">Sitios profesionales para negocios que necesitan presencia online — sin backend, sin base de datos, económicos y rápidos.</div>
+        <div class="service-title">Páginas web para tu negocio</div>
+        <div class="service-desc">Tu negocio visible en internet — los clientes ven lo que ofreces, cómo trabajas y te contactan directo por WhatsApp. Sin complicaciones.</div>
       </div>
     </div>
-
     <div class="service-card">
       <div class="service-emoji">📱</div>
       <div>
-        <div class="service-title">Aplicaciones Web</div>
-        <div class="service-desc">Herramientas interactivas personalizadas según la necesidad del cliente — apps educativas, calculadoras, sistemas de gestión simples y más.</div>
+        <div class="service-title">Herramientas y apps web a medida</div>
+        <div class="service-desc">¿Tienes una idea de algo que quieres digitalizar? Lo desarrollamos — desde apps de estudio hasta herramientas para organizar tu negocio.</div>
       </div>
     </div>
   </section>
 
-  <!-- Qué puedo hacer -->
   <section>
-    <div class="section-title">🎨 Qué puedo diseñar y desarrollar</div>
+    <div class="section-title">🎨 Qué puedo hacer para ti</div>
     <table class="data-table">
-      <thead>
-        <tr><th>Tipo</th><th>Ejemplos</th></tr>
-      </thead>
+      <thead><tr><th>Tipo</th><th>Ejemplos</th></tr></thead>
       <tbody>
-        <tr><td>Landing Page</td><td>Página principal de un negocio</td></tr>
-        <tr><td>Página Catálogo</td><td>Alquiler de mobiliario, tiendas, servicios</td></tr>
-        <tr><td>Portafolio</td><td>Fotógrafos, diseñadores, arquitectos</td></tr>
-        <tr><td>Página de Servicios</td><td>Plomeros, salones, restaurantes</td></tr>
-        <tr><td>App Educativa</td><td>Flashcards, quizzes de materias, temporizador Pomodoro, generador de exámenes, glosario interactivo, checklist de tareas</td></tr>
-        <tr><td>Herramienta Interactiva</td><td>Calculadoras, formularios, simuladores</td></tr>
+        <tr><td>Página para tu negocio</td><td>Catálogos, salones, restaurantes, plomeros, electricistas</td></tr>
+        <tr><td>Página de portafolio</td><td>Fotógrafos, diseñadores, arquitectos</td></tr>
+        <tr><td>Página de presentación</td><td>Para mostrar tu marca, servicios o proyecto</td></tr>
+        <tr><td>App educativa</td><td>Quizzes, tarjetas de estudio, temporizador, generador de exámenes, glosarios</td></tr>
+        <tr><td>Herramienta digital</td><td>Calculadoras, formularios, simuladores</td></tr>
       </tbody>
     </table>
   </section>
 
-  <!-- Tecnologías -->
   <section>
-    <div class="section-title">💻 Tecnologías que uso</div>
-    <table class="data-table">
-      <thead>
-        <tr><th>Tecnología</th><th>Para qué sirve</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>HTML</td><td>Estructura de la página</td></tr>
-        <tr><td>CSS</td><td>Estilos y diseño visual</td></tr>
-        <tr><td>JavaScript</td><td>Interactividad</td></tr>
-        <tr><td>Bootstrap</td><td>Diseño rápido y responsive</td></tr>
-        <tr><td>Decap CMS</td><td>Panel para que el cliente edite su contenido</td></tr>
-        <tr><td>Netlify</td><td>Hosting y publicación gratuita</td></tr>
-        <tr><td>GitHub</td><td>Guardar y versionar el código</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- Modelo de trabajo -->
-  <section>
-    <div class="section-title">💰 Modelo de trabajo</div>
+    <div class="section-title">✅ Lo que incluye cada proyecto</div>
     <div class="check-list">
-      <div class="check-item"><div class="check-icon">✓</div>Cobro inicial por diseño y desarrollo del proyecto</div>
-      <div class="check-item"><div class="check-icon">✓</div>Cobro adicional si se integra panel CMS para gestión de contenido</div>
-      <div class="check-item"><div class="check-icon">✓</div>Cobro por hora o tarea para cambios y mejoras futuras</div>
+      <div class="check-item"><div class="check-icon">✓</div>Diseño moderno y adaptado a celular</div>
+      <div class="check-item"><div class="check-icon">✓</div>Tú mismo puedes actualizar fotos, textos y precios cuando quieras</div>
+      <div class="check-item"><div class="check-icon">✓</div>Sin mensualidades — el hosting es gratuito</div>
+      <div class="check-item"><div class="check-icon">✓</div>Botón directo a WhatsApp para que tus clientes te contacten fácil</div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <section>
+    <div class="section-title">💰 ¿Cómo trabajamos?</div>
+    <div class="check-list">
+      <div class="check-item"><div class="check-icon">✓</div>Pago inicial por el diseño y desarrollo de tu página o app</div>
+      <div class="check-item"><div class="check-icon">✓</div>Si quieres manejar tu contenido solo, se agrega esa función con un costo adicional</div>
+      <div class="check-item"><div class="check-icon">✓</div>Cualquier cambio o mejora futura se cobra por separado según lo que necesites</div>
+    </div>
+  </section>
+
   <div class="cta">
     <div class="cta-emoji">💬</div>
     <div>
       <div class="cta-main">¿Te interesa?</div>
       <div class="cta-sub">Escríbeme y conversamos sin compromiso.</div>
+      <div class="cta-phone"><span class="wa-icon">WA</span>WhatsApp: +591 74328155</div>
     </div>
   </div>
 
-  <footer>JVSoftware &nbsp;·&nbsp; 2025</footer>
-
+  <footer>JVSoftware &nbsp;·&nbsp; 2026</footer>
 </div>
 </body>
 </html>
