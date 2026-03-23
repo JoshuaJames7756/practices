@@ -262,7 +262,7 @@ const RHYTHMS = [
         const bs = Math.floor(t * SR), be = Math.floor((t + rr) * SR);
         for (let i = bs; i < be && i < LSIZ; i++) {
           const n = (i - bs) / (be - bs);
-          b[i] += G(n, .08, .16, .027); // P siempre presente
+          b[i] += G(n, .08, .16, .027);
           if (!drop) b[i] += G(n, .33, -.08, .009) + G(n, .37, 1.18, .013)
             + G(n, .41, -.25, .009) + G(n, .60, .30, .052);
         }
@@ -288,8 +288,8 @@ const RHYTHMS = [
       const aRR = 60 / 78, vRR = 60 / 36;
       for (let i = 0; i < LSIZ; i++) {
         const t = i / SR;
-        b[i] += G((t % aRR) / aRR, .50, .16, .027); // P auricular
-        b[i] += M.wide((t % vRR) / vRR);              // QRS escape
+        b[i] += G((t % aRR) / aRR, .50, .16, .027);
+        b[i] += M.wide((t % vRR) / vRR);
       }
       return b;
     }
@@ -711,3 +711,12 @@ setTimeout(() => {
 }, 100);
 
 requestAnimationFrame(frame);
+
+// ══════════════════════════════════════════
+//  SERVICE WORKER — PWA sin internet
+// ══════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(() => console.log('✅ Service Worker registrado — app funciona sin internet'))
+    .catch(err => console.log('❌ Error Service Worker:', err));
+}

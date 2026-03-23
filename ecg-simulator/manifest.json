@@ -1,0 +1,22 @@
+{
+  "name": "Simulador ECG — Guyton & Hall",
+  "short_name": "ECG Sim",
+  "description": "Simulador de ritmos cardíacos basado en Guyton & Hall Cap. 12",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05080d",
+  "theme_color": "#00e676",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

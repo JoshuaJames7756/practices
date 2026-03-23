@@ -14,6 +14,8 @@ body {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 14px;
   overflow-x: hidden;
+  /* Evita el zoom al tocar inputs en iOS */
+  -webkit-text-size-adjust: 100%;
 }
 
 /* ── HEADER ─────────────────────────────── */
@@ -163,12 +165,15 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 button {
   cursor: pointer;
   border: none;
   outline: none;
+  /* Elimina el resaltado azul al tocar en móvil */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-play {
@@ -176,11 +181,11 @@ button {
   height: 46px;
   border-radius: 50%;
   flex-shrink: 0;
-  display: grid;           /* ← cambiamos flex por grid */
-  place-items: center;     /* ← centra perfectamente en ambos ejes */
+  display: grid;
+  place-items: center;
   font-size: 19px;
-  line-height: 1;          /* ← elimina espacio extra del emoji */
-  padding: 0;              /* ← elimina cualquier padding interno */
+  line-height: 1;
+  padding: 0;
   border: 2px solid #00e676;
   background: rgba(0,230,118,.06);
   color: #00e676;
@@ -377,15 +382,183 @@ button {
   font-size: 10px;
 }
 
-/* ── RESPONSIVE ─────────────────────────── */
-@media (max-width: 680px) {
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET (max 768px)
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Header más compacto */
+  .hdr {
+    padding: 8px 12px;
+  }
+
+  .hdr-title {
+    font-size: 10.5px;
+  }
+
+  /* Número de FC más pequeño */
+  .hr-big {
+    font-size: 48px;
+  }
+
+  /* Controles en columna */
+  .ctrl-bar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  /* Separadores ocultos en tablet */
+  .ctrl-sep {
+    display: none;
+  }
+
+  /* Botones de velocidad y ganancia más grandes para el dedo */
+  .btn-s {
+    padding: 7px 13px;
+    font-size: 13px;
+  }
+
+  /* Botón play más grande */
+  .btn-play {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+  }
+
+  /* Info en una sola columna */
   .info-sect {
     grid-template-columns: 1fr;
+    padding: 10px 12px 16px;
+    gap: 10px;
   }
+
+  /* Selector de ritmos */
+  .sel-sect {
+    padding: 10px 12px;
+  }
+
+  .btn-r {
+    padding: 7px 13px;
+    font-size: 13px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MÓVIL (max 480px)
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  /* Ocultar subtítulo del header */
+  .hdr-sub {
+    display: none;
+  }
+
+  /* Ocultar etiquetas de categoría */
   .cat-lbl {
     display: none;
   }
-  .hdr-sub {
+
+  /* Ocultar el texto de ayuda de teclado en móvil */
+  .kb-hint {
     display: none;
+  }
+
+  /* Ocultar el texto "Selecciona un ritmo ↓" */
+  .ctrl-right {
+    display: none;
+  }
+
+  /* FC más pequeña para que entre bien */
+  .hr-big {
+    font-size: 38px;
+  }
+
+  .hr-unit {
+    font-size: 10px;
+  }
+
+  .rhythm-chip {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+
+  /* Header compacto */
+  .hdr {
+    padding: 6px 10px;
+  }
+
+  .hdr-title {
+    font-size: 10px;
+  }
+
+  .hdr-title strong {
+    font-size: 12px;
+  }
+
+  /* Controles más compactos */
+  .ctrl-bar {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .ctrl-lbl {
+    font-size: 9px;
+  }
+
+  /* Botones más grandes para el dedo (mínimo 44px alto) */
+  .btn-s {
+    padding: 8px 10px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  /* Botón play táctil */
+  .btn-play {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  /* Ritmos — botones más grandes y cómodos */
+  .btn-r {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+
+  /* Selector más compacto */
+  .sel-sect {
+    padding: 8px 10px;
+  }
+
+  .sect-hdr {
+    font-size: 9px;
+  }
+
+  /* Cards de info más compactas */
+  .info-card {
+    padding: 10px;
+  }
+
+  .diag-name {
+    font-size: 15px;
+  }
+
+  .diag-hr {
+    font-size: 11px;
+  }
+
+  .feat-list li {
+    font-size: 12px;
+    padding: 5px 0;
+  }
+
+  .guyton-txt {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .info-sect {
+    padding: 8px 10px 14px;
   }
 }
