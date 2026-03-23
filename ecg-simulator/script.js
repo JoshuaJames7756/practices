@@ -539,9 +539,9 @@ function switchView(view){
   const btnSim   = document.getElementById('btnSim');
 
   if(view==='quiz'){
-    // Ocultar sim
     simView.classList.add('view-hidden');
     quizView.classList.remove('view-hidden');
+    quizView.classList.remove('hidden');        // ← AGREGAR AQUÍ
     btnQuiz.classList.add('active');
     btnSim.classList.remove('active');
     clearInterval(quizState.timerInterval);
