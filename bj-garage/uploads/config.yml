@@ -1,0 +1,113 @@
+# =============================================================
+#  B&J GARAGE — Decap CMS config.yml
+#  Requiere: Netlify Identity + Git Gateway activados en Netlify
+# =============================================================
+
+backend:
+  name: git-gateway
+  branch: main          # Cambiá a "master" si tu rama principal se llama así
+
+# Carpeta donde se guardan las imágenes que sube el cliente
+media_folder: "uploads"
+public_folder: "/uploads"
+
+# =============================================================
+#  COLECCIONES
+# =============================================================
+collections:
+
+  # -----------------------------------------------------------
+  #  PRODUCTOS — edita data/products.json
+  # -----------------------------------------------------------
+  - name: "products_data"
+    label: "🚗 Productos"
+    files:
+      - name: "products"
+        label: "Lista de Productos"
+        file: "data/products.json"
+        format: json
+        fields:
+          - name: "products"
+            label: "Productos"
+            label_singular: "Producto"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.brand}} (Bs. {{fields.price}})"
+            fields:
+              - label: "Nombre del auto"
+                name: "name"
+                widget: "string"
+                hint: "Ej: Ferrari F40, Nissan Skyline GT-R"
+
+              - label: "Marca"
+                name: "brand"
+                widget: "select"
+                options:
+                  - "Hot Wheels"
+                  - "Matchbox"
+                  - "Maisto"
+                  - "Bburago"
+                  - "Auto World"
+
+              - label: "Escala"
+                name: "scale"
+                widget: "select"
+                options:
+                  - "1:12"
+                  - "1:18"
+                  - "1:24"
+                  - "1:43"
+                  - "1:64"
+                default: "1:64"
+                hint: "La escala indica el tamaño del auto respecto al original"
+
+              - label: "Precio (Bs.)"
+                name: "price"
+                widget: "number"
+                value_type: "int"
+                min: 1
+                hint: "Precio en bolivianos, sin símbolo"
+
+              - label: "Descripción"
+                name: "description"
+                widget: "text"
+                required: false
+                hint: "Descripción corta del producto (opcional)"
+
+              - label: "Foto del producto"
+                name: "image"
+                widget: "image"
+                required: false
+                hint: "Subí una foto clara del auto. Recomendado: 800x600 px"
+
+              - label: "¿Producto destacado?"
+                name: "featured"
+                widget: "boolean"
+                default: false
+                hint: "Los destacados aparecen con un badge especial"
+
+  # -----------------------------------------------------------
+  #  VIDEOS TIKTOK — edita data/videos.json
+  # -----------------------------------------------------------
+  - name: "videos_data"
+    label: "🎬 Videos TikTok"
+    files:
+      - name: "videos"
+        label: "Videos de TikTok"
+        file: "data/videos.json"
+        format: json
+        fields:
+          - name: "videos"
+            label: "Videos"
+            label_singular: "Video"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "Título del video"
+                name: "title"
+                widget: "string"
+                hint: "Un título corto para identificar el video"
+
+              - label: "URL del video de TikTok"
+                name: "tiktok_url"
+                widget: "string"
+                hint: "Copiá el link del video de TikTok. Ej: https://www.tiktok.com/@byj_garage/video/1234567890"

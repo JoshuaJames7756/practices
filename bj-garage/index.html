@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B&J Garage — Autos a Escala</title>
+  <meta name="description" content="Importación de autos a escala en variedad de marcas y modelos. Hot Wheels, Matchbox, Maisto, Bburago, Auto World. Bolivia." />
+  <meta property="og:title" content="B&J Garage — Autos a Escala" />
+  <meta property="og:description" content="Importación de autos a escala en variedad de marcas y modelos." />
+  <meta property="og:type" content="website" />
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Google Fonts: Bebas Neue + Rajdhani + Lato -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+        <img src="assets/logo.png" alt="B&J Garage" height="48" class="nav-logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <span class="nav-logo-text" style="display:none;">B<span class="text-gold">&</span>J</span>
+      </a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list text-gold fs-2"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="#catalogo">Catálogo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#marcas">Marcas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#videos">Videos</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-gold btn-sm" href="https://wa.me/59170718685" target="_blank">
+              <i class="bi bi-whatsapp me-1"></i>WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="inicio" class="hero-section">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="container h-100">
+      <div class="hero-inner h-100 d-flex flex-column justify-content-center">
+        <div class="hero-content" data-animate="hero">
+          <span class="hero-eyebrow">
+            <span class="hero-line"></span>Colección Premium Bolivia
+          </span>
+          <h1 class="hero-title">
+            B<span class="text-gold">&</span>J<br>
+            <span class="hero-title-sub">GARAGE</span>
+          </h1>
+          <p class="hero-desc">
+            Importación de autos a escala en variedad<br class="d-none d-md-inline">
+            de marcas y modelos
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="#catalogo" class="btn btn-gold btn-lg">
+              Ver Catálogo <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a href="https://wa.me/59170718685" target="_blank" class="btn btn-outline-gold btn-lg">
+              <i class="bi bi-whatsapp me-2"></i>Escribir al WA
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#nosotros" class="hero-scroll-indicator" aria-label="Ir a siguiente sección">
+      <span class="scroll-dot"></span>
+    </a>
+  </section>
+
+  <!-- ===================== SOBRE NOSOTROS ===================== -->
+  <section id="nosotros" class="py-section section-alt">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-5 d-flex justify-content-center" data-animate="fade-right">
+          <div class="about-visual">
+            <div class="about-ring"></div>
+            <div class="about-ring about-ring--2"></div>
+            <div class="about-logo-wrap">
+              <img src="assets/logo.png" alt="B&J Garage Logo" class="about-logo"
+                   onerror="this.parentElement.innerHTML='<div class=\'logo-fallback\'>B<span>&</span>J</div>'" />
+            </div>
+            <div class="about-badge">
+              <i class="bi bi-patch-check-fill"></i> 100% Original
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7" data-animate="fade-left">
+          <p class="section-tag">¿Quiénes somos?</p>
+          <h2 class="section-title">
+            Pasión por los<br>
+            <span class="text-gold">Autos a Escala</span>
+          </h2>
+          <p class="section-text">
+            En <strong class="text-gold">B&J Garage</strong> somos apasionados del coleccionismo automotriz. Importamos directamente los mejores autos a escala del mercado, garantizando calidad y autenticidad en cada pieza que ofrecemos.
+          </p>
+          <p class="section-text">
+            Contamos con una amplia variedad de marcas y modelos para todo tipo de coleccionista — desde el que recién empieza hasta el más exigente. Cada auto en nuestra colección es una obra de arte en miniatura.
+          </p>
+
+          <div class="about-stats d-flex flex-wrap gap-4 mt-4">
+            <div class="stat-item">
+              <span class="stat-number">5<span class="text-gold">+</span></span>
+              <span class="stat-label">Marcas</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">100<span class="text-gold">+</span></span>
+              <span class="stat-label">Modelos</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">100<span class="text-gold">%</span></span>
+              <span class="stat-label">Original</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CATÁLOGO ===================== -->
+  <section id="catalogo" class="py-section">
+    <div class="container">
+
+      <div class="text-center mb-5" data-animate="fade-up">
+        <p class="section-tag">Nuestra Colección</p>
+        <h2 class="section-title">Catálogo de <span class="text-gold">Productos</span></h2>
+        <p class="section-subtitle">Elegí tu modelo favorito y pedilo por WhatsApp</p>
+      </div>
+
+      <!-- Filtros -->
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-5" id="filterBtns" data-animate="fade-up">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="Hot Wheels">Hot Wheels</button>
+        <button class="filter-btn" data-filter="Matchbox">Matchbox</button>
+        <button class="filter-btn" data-filter="Maisto">Maisto</button>
+        <button class="filter-btn" data-filter="Bburago">Bburago</button>
+        <button class="filter-btn" data-filter="Auto World">Auto World</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="row g-4" id="productsGrid">
+        <div class="col-12 text-center py-5" id="productsLoading">
+          <div class="spinner-gold mx-auto"></div>
+          <p class="text-muted mt-3 font-raj">Cargando productos...</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-5 d-none" id="noProducts">
+        <p class="text-muted font-raj fs-5">No hay productos en esta categoría aún.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MARCAS ===================== -->
+  <section id="marcas" class="py-section section-alt">
+    <div class="container">
+      <div class="text-center mb-5" data-animate="fade-up">
+        <p class="section-tag">Con quiénes trabajamos</p>
+        <h2 class="section-title">Nuestras <span class="text-gold">Marcas</span></h2>
+      </div>
+    </div>
+
+    <div class="brands-track" data-animate="fade-up">
+      <div class="brands-slide" aria-hidden="true">
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Hot Wheels</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Matchbox</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Maisto</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Bburago</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Auto World</div>
+        <!-- duplicados para el loop -->
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Hot Wheels</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Matchbox</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Maisto</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Bburago</div>
+        <div class="brand-item"><i class="bi bi-hexagon-fill me-2 text-gold opacity-50"></i>Auto World</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VIDEOS TIKTOK ===================== -->
+  <section id="videos" class="py-section">
+    <div class="container">
+
+      <div class="text-center mb-5" data-animate="fade-up">
+        <p class="section-tag">Síguenos en TikTok</p>
+        <h2 class="section-title">Nuestros <span class="text-gold">Videos</span></h2>
+        <p class="section-subtitle">Mirá nuestras colecciones en acción</p>
+      </div>
+
+      <div class="row g-4 justify-content-center" id="videosGrid">
+        <div class="col-12 text-center py-5" id="videosLoading">
+          <div class="spinner-gold mx-auto"></div>
+          <p class="text-muted mt-3 font-raj">Cargando videos...</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-5" data-animate="fade-up">
+        <a href="https://www.tiktok.com/@byj_garage" target="_blank" rel="noopener" class="btn btn-outline-gold btn-lg">
+          <i class="bi bi-tiktok me-2"></i>Ver más en TikTok @byj_garage
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section id="contacto" class="py-section section-alt">
+    <div class="container">
+
+      <div class="text-center mb-5" data-animate="fade-up">
+        <p class="section-tag">Hablemos</p>
+        <h2 class="section-title">¿Te interesa algún <span class="text-gold">modelo</span>?</h2>
+        <p class="section-subtitle">Contactanos directamente — te respondemos en seguida</p>
+      </div>
+
+      <div class="row justify-content-center g-4">
+        <div class="col-sm-8 col-md-5 col-lg-4" data-animate="fade-up">
+          <div class="contact-card">
+            <div class="contact-icon-wrap">
+              <i class="bi bi-whatsapp"></i>
+            </div>
+            <h4 class="font-raj fw-700 fs-5 mt-3 mb-1">WhatsApp</h4>
+            <p class="text-muted mb-3">+591 70718685</p>
+            <a href="https://wa.me/59170718685?text=Hola!%20Me%20interesa%20ver%20el%20cat%C3%A1logo%20de%20autos%20a%20escala%20%F0%9F%9A%97" 
+               target="_blank" class="btn btn-gold w-100">
+              Escribir ahora
+            </a>
+          </div>
+        </div>
+
+        <div class="col-sm-8 col-md-5 col-lg-4" data-animate="fade-up" data-delay="150">
+          <div class="contact-card">
+            <div class="contact-icon-wrap">
+              <i class="bi bi-tiktok"></i>
+            </div>
+            <h4 class="font-raj fw-700 fs-5 mt-3 mb-1">TikTok</h4>
+            <p class="text-muted mb-3">@byj_garage</p>
+            <a href="https://www.tiktok.com/@byj_garage" target="_blank" rel="noopener" class="btn btn-gold w-100">
+              Ver perfil
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <div class="col-12 col-md-4 text-center text-md-start">
+          <img src="assets/logo.png" alt="B&J Garage" height="52"
+               onerror="this.outerHTML='<span class=\'footer-logo-text\'>B<span>&</span>J GARAGE</span>'" />
+        </div>
+        <div class="col-12 col-md-4 text-center">
+          <p class="footer-tagline mb-1">Importación de autos a escala</p>
+          <p class="footer-copy mb-0">© 2025 B&J Garage · Todos los derechos reservados</p>
+        </div>
+        <div class="col-12 col-md-4 text-center text-md-end">
+          <div class="footer-social d-flex gap-3 justify-content-center justify-content-md-end">
+            <a href="https://wa.me/59170718685" target="_blank" aria-label="WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://www.tiktok.com/@byj_garage" target="_blank" aria-label="TikTok">
+              <i class="bi bi-tiktok"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== WHATSAPP FLOAT ===================== -->
+  <a href="https://wa.me/59170718685?text=Hola!%20Me%20interesa%20ver%20el%20cat%C3%A1logo%20%F0%9F%9A%97"
+     target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+    <span class="wf-pulse"></span>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="main.js"></script>
+</body>
+</html>

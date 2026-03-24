@@ -1,0 +1,20 @@
+# =============================================================
+#  B&J GARAGE — netlify.toml
+# =============================================================
+
+[build]
+  publish = "."      # Publica la carpeta raíz del proyecto
+
+# Redirige todas las rutas /admin/* al panel CMS
+[[redirects]]
+  from   = "/admin/*"
+  to     = "/admin/index.html"
+  status = 200
+
+# Headers de seguridad básicos
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"

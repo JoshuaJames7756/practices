@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "name": "Ferrari F40",
+      "brand": "Bburago",
+      "scale": "1:24",
+      "price": 185,
+      "description": "Ícono del automovilismo italiano. Acabado en rojo Ferrari con detalles metalizados premium.",
+      "image": "",
+      "featured": true
+    },
+    {
+      "name": "Nissan Skyline GT-R R34",
+      "brand": "Hot Wheels",
+      "scale": "1:64",
+      "price": 45,
+      "description": "El legendario Godzilla en versión coleccionable. Perfecto para fans del JDM.",
+      "image": "",
+      "featured": true
+    },
+    {
+      "name": "Ford Mustang Shelby GT500",
+      "brand": "Maisto",
+      "scale": "1:18",
+      "price": 320,
+      "description": "El muscle car americano por excelencia. Escala 1:18 con puertas y capó funcionales.",
+      "image": "",
+      "featured": false
+    },
+    {
+      "name": "Lamborghini Huracán",
+      "brand": "Bburago",
+      "scale": "1:43",
+      "price": 120,
+      "description": "Superdeportivo italiano a escala con acabados en color naranja Arancio.",
+      "image": "",
+      "featured": false
+    },
+    {
+      "name": "Volkswagen Golf GTI MK1",
+      "brand": "Matchbox",
+      "scale": "1:64",
+      "price": 38,
+      "description": "Clásico del automovilismo europeo. Edición especial retro.",
+      "image": "",
+      "featured": false
+    },
+    {
+      "name": "Chevrolet Camaro SS 1969",
+      "brand": "Auto World",
+      "scale": "1:64",
+      "price": 55,
+      "description": "Primera generación del Camaro en su año más icónico. Edición muscle classic.",
+      "image": "",
+      "featured": true
+    }
+  ]
+}
